@@ -1,5 +1,9 @@
 <h1>Films</h1>
 
 <ul>
-  <%= render @films %>
+  <% @films.each do |film| %>
+    <li><%= film.name %></li>
+    <li><%= film.company %></li>
+    <li><%= film.iso %></li>
+  <% end %>
 </ul>

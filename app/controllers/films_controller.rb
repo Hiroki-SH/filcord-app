@@ -14,7 +14,7 @@ class FilmsController < ApplicationController
     @film = Film.new(film_params)
     if @film.save
       flash[:success] = "新しいフィルムを登録しました！"
-      redirect root_url
+      redirect_to films_url
     else
       render 'films/new'
     end

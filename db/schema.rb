@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_03_081637) do
+ActiveRecord::Schema.define(version: 2020_11_04_132910) do
 
   create_table "films", force: :cascade do |t|
     t.string "name"
     t.string "company"
-    t.integer "iso"
+    t.string "iso"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
