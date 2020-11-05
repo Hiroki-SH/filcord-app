@@ -4,6 +4,7 @@ class FilmsController < ApplicationController
   end
 
   def show
+    @film = Film.find(params[:id])
   end
 
   def new
@@ -13,7 +14,7 @@ class FilmsController < ApplicationController
   def create
     @film = Film.new(film_params)
     if @film.save
-      flash[:success] = "新しいフィルムを登録しました！"
+      # flash[:success] = "新しいフィルムを登録しました！"
       redirect_to films_url
     else
       render 'films/new'
@@ -21,12 +22,23 @@ class FilmsController < ApplicationController
   end
 
   def edit
+    @film = Film.find(params[:id])
   end
 
   def update
+    @film = Film.find(params[:id])
+    if @film.update(film_params)
+      # flash[:success] = "フィルム情報を更新しました！"
+      redirect_to @film
+    else
+      render 'films/edit'
+    end
   end
 
   def destroy
+    Film.find(params[:id]).destroy
+    # flash[:success] = "フィルムを削除しました！"
+    redirect_to films_url
   end
 
   private
