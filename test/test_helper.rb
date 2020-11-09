@@ -2,6 +2,10 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
 
+#以下二行はtestで色を表示するもの
+require "minitest/reporters"
+Minitest::Reporters.use!
+
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
