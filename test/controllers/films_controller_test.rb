@@ -6,22 +6,12 @@ class FilmsControllerTest < ActionDispatch::IntegrationTest
   # end
 
   test "indexアクションをgetできるか" do
-    get films_url
+    get films_path
     assert_response :success
   end
 
   test "newアクションをgetできるか" do
-    get new_film_url
+    get new_film_path
     assert_response :success
   end
-
-  # test "editアクションをgetできるか" do
-  #   get edit_film_url
-  #   assert_response :success
-  # end
-
-  # test "showアクションをgetできるか" do
-  #   get film_url
-  #   assert_response :success
-  # end
 end
