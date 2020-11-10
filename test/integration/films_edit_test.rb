@@ -8,7 +8,6 @@ class FilmsEditTest < ActionDispatch::IntegrationTest
     @film = films(:film1)
   end
 
-  #newのときも書かんといけんぞ
   test "filmの編集(edit)に失敗するテスト" do
     get edit_film_path(@film)
     assert_template 'films/edit'
