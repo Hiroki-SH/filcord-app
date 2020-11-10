@@ -5,7 +5,8 @@ class UserTest < ActiveSupport::TestCase
   #   assert true
   # end
   def setup
-    @user = User.new(name: "example name", email: "hoge@example.com")
+    @user = User.new(name: "example name", email: "hoge@example.com", 
+      password: "hogehoge", password_confirmation: "hogehoge")
   end
 
   test "有効なUserかテスト" do
