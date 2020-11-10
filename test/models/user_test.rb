@@ -37,7 +37,22 @@ class UserTest < ActiveSupport::TestCase
       hoge@example.jp hoge.fuga@example.cn]
     valid_addresses.each do |address|
       @user.email = address
-      assert @user.valid? "#{address.inspect} should be valid" #第二引数は、エラーメッセージ表示用
+      assert @user.valid?, "#{address.inspect} は有効でなければならない" #第二引数は、エラーメッセージ表示用
     end
+  end
+
+  test "無効なメールをテスト" do
+    invalid_addresses = %w[user@example,com h_Og_e_example.COM FUGA@example.
+      hoge@exam_ple.jp hoge.fuga@exa+mple.cn]
+    invalid_addresses.each do |address|
+      @user.email = address
+      assert_not @user.valid?, "#{address.inspect} は無効でなければならない" #第二引数は、エラーメッセージ表示用
+    end
+  end
+
+  test "重複するemailのUserが登録できないようにする" do
+    same_user = @user.dup
+    @user.save
+    assert_not same_user.valid?
   end
 end
