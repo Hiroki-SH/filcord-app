@@ -5,6 +5,8 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
+      log_in(user)
+      redirect_to user_url
     else
       #flash.now[:danger] = "登録されていないメールアドレスか、パスワードが違います" 
       render 'new'
@@ -12,5 +14,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    log_out
+    redirect_to login_url
   end
 end

@@ -1,0 +1,7 @@
+<% if logged_in? %>
+  <%= current_user.name %>
+  <%= current_user.email %>
+  <%= link_to "ログアウト", logout_path, method: :delete %>
+<% else %>
+  あなたはログインしていません
+<% end %>

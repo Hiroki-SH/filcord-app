@@ -5,7 +5,7 @@ class UsersNewTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
 
-  test "無効なユーザを登録しようとしたとき" do
+  test "有効なユーザを登録しようとしたとき" do
     get new_user_path
     assert_difference 'User.count', 1 do
       post user_path, params: {
@@ -19,9 +19,10 @@ class UsersNewTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_template 'users/show'
+    assert is_logged_in?
   end
 
-  test "有効なユーザを登録したとき" do
+  test "無効なユーザを登録したとき" do
     get new_user_path
     assert_no_difference 'User.count' do
       post user_path, params: {
@@ -33,5 +34,6 @@ class UsersNewTest < ActionDispatch::IntegrationTest
         }
       }
     end
+    assert_template 'users/new'
   end
 end
