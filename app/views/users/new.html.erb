@@ -1,6 +1,6 @@
 <h1>user new</h1>
 
-<%= form_with(url: user_path, local: true) do |f| %>
+<%= form_with(url: user_path, scope: :user, local: true) do |f| %>
   <%= f.label :name, "アカウント名" %>
   <%= f.text_field :name %>
 
