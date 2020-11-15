@@ -8,6 +8,12 @@
   <%= f.label :password, "パスワード" %>
   <%= f.password_field :password %>
 
+  <%= f.label :rememer_me do %>
+    <%= f.check_box :rememer_me %>
+    <span>ログイン状態を維持しますか？</span>
+  <% end %>
+
+
   <%= f.submit "ログイン" %>
 <% end %>
 

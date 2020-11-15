@@ -56,4 +56,8 @@ class UserTest < ActiveSupport::TestCase
     @user.save
     assert_not same_user.valid?
   end
+
+  test "ダイジェストが存在しないときにauthenticated?がエラーにならないか" do
+    assert_not @user.authenticated?('')
+  end
 end
