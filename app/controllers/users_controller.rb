@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :logged_in_user, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -18,9 +19,32 @@ class UsersController < ApplicationController
   def show
   end
 
+  def edit
+    # @user = User.find_by(id: current_user.id)
+  end
+
+  def update
+    @user = User.find_by(id: current_user.id)
+    # debugger
+    if @user.update(user_params)
+      # flash[:success] = "フィルム情報を更新しました！"
+      redirect_to user_url
+    else
+      render 'users/edit'
+    end
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    #ログイン済みのユーザか判定、未ログインの場合ログインページへリダイレクト
+    def logged_in_user
+      unless logged_in?
+        # flash[:danger] = "ログインをしてください"
+        redirect_to login_url
+      end
     end
 
   

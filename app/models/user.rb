@@ -10,7 +10,7 @@ class User < ApplicationRecord
     uniqueness: true
 
   has_secure_password
-  validates :password, presence: true
+  validates :password, presence: true, allow_nil: true #allow_nil: trueで空白でもアップデートできるように
 
   #渡された文字列のハッシュ値を返す(クラスメソッド)
   def User.digest(string)
