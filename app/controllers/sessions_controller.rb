@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       log_in(user)
       params[:session][:remember_me] == '1' ?  remember(user) : forget(user)
-      redirect_to user_url
+      redirect_back_or(user_url)
     else
       #flash.now[:danger] = "登録されていないメールアドレスか、パスワードが違います" 
       render 'new'
