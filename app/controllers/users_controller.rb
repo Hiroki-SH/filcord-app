@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:edit, :update, :destroy]
 
   def new
     @user = User.new
@@ -32,6 +32,12 @@ class UsersController < ApplicationController
     else
       render 'users/edit'
     end
+  end
+
+  def destroy
+    User.find(current_user.id).destroy
+    # flash[:success] = "ユーザーを削除しました！"
+    redirect_to login_url
   end
 
   private
