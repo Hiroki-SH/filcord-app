@@ -61,10 +61,12 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.authenticated?('')
   end
 
-  test "ユーザ消去と同時に関連付されたフィルムも消えるか" do
+  test "ユーザ消去と同時に関連付されたフィルムとフォトも消えるか" do
     @user.save
     @user.films.create!(name: "example_name", iso: "100")
-    assert_difference 'Film.count', -1 do
+    film = @user.films.first
+    film.photos.create!(f_number: "2.8", shutter_speed: "1/125")
+    assert_difference ['Film.count', 'Photo.count'], -1 do
       @user.destroy
     end
   end

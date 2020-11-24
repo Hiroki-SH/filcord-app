@@ -14,6 +14,11 @@ class FilmTest < ActiveSupport::TestCase
     assert @film.valid?
   end
 
+  test "user_id(外部キー)がnilのとき無効なフィルムになるか" do
+    @film.user_id = nil
+    assert_not @film.valid?
+  end
+
   test "空白の名前に対するバリデーションが機能するかテスト" do
     @film.name = "     "
     assert_not @film.valid?
