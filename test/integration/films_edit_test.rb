@@ -5,10 +5,12 @@ class FilmsEditTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
   def setup
+    @user = users(:user1)
     @film = films(:film1)
   end
 
   test "filmの編集(edit)に失敗するテスト" do
+    log_in_as(@user)
     get edit_film_path(@film)
     assert_template 'films/edit'
     patch film_path(@film), params: { 
