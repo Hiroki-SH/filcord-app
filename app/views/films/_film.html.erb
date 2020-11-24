@@ -1,0 +1,8 @@
+<li>
+  <%= film.name %></li>
+  <%= film.company %></li>
+  <%= film.iso %></li>
+  <%= film.created_at %></li>
+  <%= link_to("編集する", edit_film_path(film)) %>
+  <%= link_to("削除する", film, method: :delete, data: { confirm: "本当に消しますか？"}) %>
+</li>

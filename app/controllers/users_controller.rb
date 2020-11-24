@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @films = current_user.films.paginate(page: params[:page])
   end
 
   def edit
@@ -44,15 +45,4 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
-
-    #ログイン済みのユーザか判定、未ログインの場合ログインページへリダイレクト
-    def logged_in_user
-      unless logged_in?
-        store_location
-        # flash[:danger] = "ログインをしてください"
-        redirect_to login_url
-      end
-    end
-
-  
 end
