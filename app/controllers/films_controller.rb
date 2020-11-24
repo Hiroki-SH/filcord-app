@@ -13,10 +13,11 @@ class FilmsController < ApplicationController
   end
 
   def create
-    @film = Film.new(film_params)
+    @film = current_user.films.build(film_params)
     if @film.save
       # flash[:success] = "新しいフィルムを登録しました！"
-      redirect_to films_url
+      # redirect_to @film
+      redirect_to user_url
     else
       render 'films/new'
     end
@@ -30,7 +31,8 @@ class FilmsController < ApplicationController
     @film = Film.find(params[:id])
     if @film.update(film_params)
       # flash[:success] = "フィルム情報を更新しました！"
-      redirect_to @film
+      # redirect_to @film
+      redirect_to user_url
     else
       render 'films/edit'
     end
@@ -39,7 +41,7 @@ class FilmsController < ApplicationController
   def destroy
     Film.find(params[:id]).destroy
     # flash[:success] = "フィルムを削除しました！"
-    redirect_to films_url
+    redirect_to user_url
   end
 
   private
