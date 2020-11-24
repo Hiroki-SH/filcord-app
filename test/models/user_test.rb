@@ -60,4 +60,12 @@ class UserTest < ActiveSupport::TestCase
   test "ダイジェストが存在しないときにauthenticated?がエラーにならないか" do
     assert_not @user.authenticated?('')
   end
+
+  test "ユーザ消去と同時に関連付されたフィルムも消えるか" do
+    @user.save
+    @user.films.create!(name: "example_name", iso: "100")
+    assert_difference 'Film.count', -1 do
+      @user.destroy
+    end
+  end
 end

@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   attr_accessor :remember_token #仮想属性
 
+  has_many :films, dependent: :destroy #ユーザには複数のfilmsがいる,ユーザの削除でfilmも消去
+
   before_save { self.email = self.email.downcase } #save前にemailを全部小文字にする
 
   validates :name,  presence: true, length: { maximum: 64 }

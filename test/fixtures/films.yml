@@ -5,7 +5,22 @@
 # below each fixture, per the syntax in the comments below
 #
 film1:
-  name: example name
-  company: example company
+  name: example name1
+  company: example company1
   iso: 100
+  created_at: <%= 2.years.ago %>
+  user: user1
 
+film2:
+  name: example name2
+  company: example company2
+  iso: 100
+  created_at: <%= 2.hours.ago %>
+  user: user1
+
+film3:
+  name: example name3
+  company: example company3
+  iso: 100
+  created_at: <%= Time.zone.now %>
+  user: user1
