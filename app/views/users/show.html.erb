@@ -4,6 +4,14 @@
   <%= link_to "ログアウト", logout_path, method: :delete %>
   <%= link_to "編集", edit_user_path %>
   <%= link_to("削除する", user_path, method: :delete, data: { confirm: "本当に消しますか？"}) %></li>
+
+  <% if current_user.films.any? %>
+    <h3>フィルム</h3>
+    <ol>
+      <%= render @films %>
+    </ol>
+    <%= will_paginate @films %>
+  <% end %>
 <% else %>
   あなたはログインしていません
 <% end %>

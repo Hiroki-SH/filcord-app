@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @films = current_user.films.paginate(page: params[:page])
   end
 
   def edit
