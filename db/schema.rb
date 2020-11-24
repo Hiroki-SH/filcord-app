@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_020809) do
+ActiveRecord::Schema.define(version: 2020_11_24_143334) do
 
   create_table "films", force: :cascade do |t|
     t.string "name"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 2020_11_24_020809) do
     t.integer "user_id"
     t.index ["user_id", "created_at"], name: "index_films_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_films_on_user_id"
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string "f_number"
+    t.string "shutter_speed"
+    t.integer "film_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["film_id"], name: "index_photos_on_film_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -34,4 +43,5 @@ ActiveRecord::Schema.define(version: 2020_11_24_020809) do
   end
 
   add_foreign_key "films", "users"
+  add_foreign_key "photos", "films"
 end
