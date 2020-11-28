@@ -34,5 +34,16 @@ users = User.order(:created_at).take(6)
   company = Faker::Lorem.sentence(word_count: 2)
   iso = "100"
   users.each { |user| user.films.create!(
-    name: name, company: company, iso: iso) }
+    name: name, company: company, iso: iso
+  ) }
+end
+
+#メインサンプルユーザの最初から５つのフィルムにphotoを生成する
+films = User.first.films.order(:created_at).take(5)
+27.times do
+  f_number = "7"
+  shutter_speed = "1/125"
+  films.each { |film| film.photos.create!(
+    f_number: f_number, shutter_speed: shutter_speed
+  ) }
 end

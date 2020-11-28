@@ -5,4 +5,12 @@
   <li><%= @film.created_at %></li>
   <li><%= link_to("編集する", edit_film_path(@film)) %></li>
   <li><%= link_to("削除する", @film, method: :delete, data: { confirm: "本当に消しますか？"}) %></li>
+
+  <% if @film.photos.any? %>
+    <h3>撮影記録</h3>
+    <ol>
+      <%= render @photos %>
+    </ol>
+    <%= will_paginate @photos %>
+  <% end %>
 </ul>

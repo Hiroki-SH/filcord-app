@@ -6,6 +6,7 @@ class FilmsController < ApplicationController
 
   def show
     @film = Film.find(params[:id])
+    @photos = @film.photos.paginate(page: params[:page])
   end
 
   def new
