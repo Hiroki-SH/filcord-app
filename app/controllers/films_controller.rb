@@ -1,11 +1,11 @@
 class FilmsController < ApplicationController
   before_action :logged_in_user
+  before_action :correct_user, only: [:show, :edit, :update, :destroy]
   def index
     @films = Film.all
   end
 
   def show
-    @film = Film.find(params[:id])
     @photos = @film.photos.paginate(page: params[:page])
     @photo = Photo.new
   end
@@ -26,11 +26,9 @@ class FilmsController < ApplicationController
   end
 
   def edit
-    @film = Film.find(params[:id])
   end
 
   def update
-    @film = Film.find(params[:id])
     if @film.update(film_params)
       # flash[:success] = "フィルム情報を更新しました！"
       # redirect_to @film
@@ -41,7 +39,7 @@ class FilmsController < ApplicationController
   end
 
   def destroy
-    Film.find(params[:id]).destroy
+    @film.destroy
     # flash[:success] = "フィルムを削除しました！"
     redirect_to user_url
   end
@@ -50,5 +48,14 @@ class FilmsController < ApplicationController
     def film_params
       params.require(:film).permit(:name, :company, :iso)
     end
+
+    def correct_user
+      @film = Film.find(params[:id])
+      unless @film.user == current_user
+        store_location #現在のURLを保存。ログイン後このURLにリダイレクト
+        redirect_to (login_url) 
+      end
+    end
+
 
 end

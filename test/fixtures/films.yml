@@ -24,3 +24,10 @@ film3:
   iso: 100
   created_at: <%= Time.zone.now %>
   user: user1
+
+film4:
+  name: example name4
+  company: example company4
+  iso: 100
+  created_at: <%= 1.hours.ago %>
+  user: user2
