@@ -28,6 +28,10 @@ class PhotosController < ApplicationController
   end
 
   def destroy
+    photo = Photo.find(params[:id])
+    film = Film.find(photo.film_id)
+    photo.destroy
+    redirect_to film
   end
 
   private
