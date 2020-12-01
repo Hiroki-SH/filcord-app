@@ -1,0 +1,10 @@
+<%= form_with(model: @photo, local: true) do |f| %>
+  <%= hidden_field_tag(:film_id, @photo.film_id) %><!-- film.idを渡す -->
+  <%= f.label :f_number, "F値" %>
+  <%= f.text_field :f_number %>
+
+  <%= f.label :shutter_speed, "シャッタースピード" %>
+  <%=  f.text_field :shutter_speed %>
+
+  <%= f.submit "撮影記録を編集" %>
+<% end %>
