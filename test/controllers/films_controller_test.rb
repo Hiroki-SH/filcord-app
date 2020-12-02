@@ -91,7 +91,7 @@ class FilmsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_url
   end
 
-  test "違うユーザのフィルムを編集しようとしてできないか" do
+  test "違うユーザのフィルムを削除しようとしてできないか" do
     log_in_as(@user)
     assert_no_difference 'Film.count' do
       delete film_path(@other_user_film)

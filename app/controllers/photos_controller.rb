@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
   before_action :logged_in_user
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def create
     @film = Film.find(params[:film_id])
@@ -13,12 +14,10 @@ class PhotosController < ApplicationController
   end
 
   def edit
-    @photo = Photo.find(params[:id])
   end
 
   def update
-    film = Film.find(params[:film_id])
-    @photo = Photo.find(params[:id])
+    film = Film.find(@photo.film_id)
     if @photo.update(photo_params)
       # flash[:success] = "撮影情報を更新しました！"
       redirect_to film
@@ -28,14 +27,21 @@ class PhotosController < ApplicationController
   end
 
   def destroy
-    photo = Photo.find(params[:id])
-    film = Film.find(photo.film_id)
-    photo.destroy
+    film = Film.find(@photo.film_id)
+    @photo.destroy
     redirect_to film
   end
 
   private
     def photo_params
       params.require(:photo).permit(:f_number, :shutter_speed)
+    end
+
+    def correct_user
+      @photo = Photo.find(params[:id])
+      unless @photo.user == current_user
+        store_location #現在のURLを保存。ログイン後このURLにリダイレクト
+        redirect_to (login_url)
+      end
     end
 end
