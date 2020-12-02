@@ -17,19 +17,17 @@ class PhotosController < ApplicationController
   end
 
   def update
-    film = Film.find(@photo.film_id)
     if @photo.update(photo_params)
       # flash[:success] = "撮影情報を更新しました！"
-      redirect_to film
+      redirect_to film_url(@photo.film_id)
     else
       render :edit
     end
   end
 
   def destroy
-    film = Film.find(@photo.film_id)
     @photo.destroy
-    redirect_to film
+    redirect_to film_url(@photo.film_id)
   end
 
   private
