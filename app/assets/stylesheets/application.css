@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+
+ #text-button {
+  display: block;
+  cursor: pointer;
+  width: 160px;
+  text-align: center;
+  border: 1px solid #232323;
+}
+
+#map {
+  height: 400px;
+  width: 400px;
+}
