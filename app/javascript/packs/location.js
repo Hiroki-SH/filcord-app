@@ -1,19 +1,11 @@
+import {showGoogleMapPoint} from "./google_map.js"
+
 function successFunc(position) {
   var data = position.coords; //取得した位置情報を整理
   var lat = data.latitude; //緯度
   var lng = data.longitude; //経度
 
-  alert("緯度：" + lat + "　経度：" + lng);
-  var phtotoLatLng = new google.maps.LatLng(lat, lng);
-  var option = {
-    zoom: 15,
-    center: phtotoLatLng,
-  };
-  var map = new google.maps.Map(document.getElementById("map"), option);
-  new google.maps.Marker({
-    map: map,
-    position: phtotoLatLng
-  });
+  showGoogleMapPoint(lat, lng);
 }
 
 function errorFunc(error){
