@@ -20,6 +20,9 @@
 
 <%= form_with(model: @photo, local: true) do |f| %>
   <%= hidden_field_tag(:film_id, @film.id) %><!-- film.idを渡す -->
+  <%= f.hidden_field(:lat) %><!-- JavaScriptで取得した緯度を渡す -->
+  <%= f.hidden_field(:lng) %><!-- JavaScriptで取得した経度を渡す -->
+
   <%= f.label :f_number, "F値" %>
   <%= f.text_field :f_number %>
 

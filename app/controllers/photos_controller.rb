@@ -36,7 +36,7 @@ class PhotosController < ApplicationController
 
   private
     def photo_params
-      params.require(:photo).permit(:f_number, :shutter_speed)
+      params.require(:photo).permit(:f_number, :shutter_speed, :lat, :lng)
     end
 
     def correct_user

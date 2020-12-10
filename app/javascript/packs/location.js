@@ -5,6 +5,11 @@ function successFunc(position) {
   var lat = data.latitude; //緯度
   var lng = data.longitude; //経度
 
+  // console.log(Object.prototype.toString.call(lat));
+
+  document.getElementById("photo_lat").value = lat;
+  document.getElementById("photo_lng").value = lng;
+
   showGoogleMapPoint(lat, lng);
 }
 
