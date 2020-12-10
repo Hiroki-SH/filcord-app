@@ -1,9 +1,0 @@
-<h1>Films</h1>
-<%= link_to("登録する", new_film_path) %>
-<ul>
-  <% @films.each do |film| %>
-    <li><%= link_to(film.name, film_path(film)) %></li>
-    <li><%= film.company %></li>
-    <li><%= film.iso %></li>
-  <% end %>
-</ul>

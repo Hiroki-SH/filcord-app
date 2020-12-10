@@ -1,9 +1,6 @@
 class FilmsController < ApplicationController
   before_action :logged_in_user
   before_action :correct_user, only: [:show, :edit, :update, :destroy]
-  def index
-    @films = Film.all
-  end
 
   def show
     @photos = @film.photos.paginate(page: params[:page])
