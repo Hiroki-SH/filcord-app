@@ -1,0 +1,6 @@
+<ul>
+  <li><%= @photo.f_number %></li>
+  <li><%= @photo.shutter_speed %></li>
+  <%= link_to "編集する", edit_photo_path(@photo) %>
+  <%= link_to("削除する", @photo, method: :delete, data: { confirm: "本当に消しますか？"}) %>
+</ul>

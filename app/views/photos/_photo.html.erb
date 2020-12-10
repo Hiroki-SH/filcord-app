@@ -1,7 +1,5 @@
 <li>
-  <%= photo.f_number %>
+  <%= link_to photo.f_number, photo %>
   <%= photo.shutter_speed %>
   <%= photo.created_at %>
-  <%= link_to "編集する", edit_photo_path(photo) %>
-  <%= link_to("削除する", photo, method: :delete, data: { confirm: "本当に消しますか？"}) %>
 </li>
