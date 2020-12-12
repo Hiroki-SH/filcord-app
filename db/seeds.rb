@@ -40,10 +40,15 @@ end
 
 #メインサンプルユーザの最初から５つのフィルムにphotoを生成する
 films = User.first.films.order(:created_at).take(5)
-27.times do
+27.times do |n|
   f_number = "7"
   shutter_speed = "1/125"
+  lat = 35.7
+  lng = 138.7 + (n * 0.1)
   films.each { |film| film.photos.create!(
-    f_number: f_number, shutter_speed: shutter_speed
+    f_number: f_number,
+    shutter_speed: shutter_speed,
+    lat: lat.to_s,
+    lng: lng.to_s
   ) }
 end
