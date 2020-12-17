@@ -1,21 +1,25 @@
 <% provide(:title, "ログイン") %>
-<h1>ログイン</h1>
 
-<%= form_with(url: login_path, scope: :session, local: true) do |f| %>
+<div class="container">
+  <div class="form-wrapper">
+    <h1>ログイン</h1>
+    <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
 
-  <%= f.label :email, "Emailアドレス" %>
-  <%=  f.email_field :email %>
+      <%= f.label :email, "Emailアドレス" %>
+      <%=  f.email_field :email, class: "form-control" %>
 
-  <%= f.label :password, "パスワード" %>
-  <%= f.password_field :password %>
+      <%= f.label :password, "パスワード" %>
+      <%= f.password_field :password, class: "form-control" %>
 
-  <%= f.label :rememer_me do %>
-    <%= f.check_box :rememer_me %>
-    <span>ログイン状態を維持しますか？</span>
-  <% end %>
+      <%= f.label :rememer_me do %>
+        <%= f.check_box :rememer_me %>
+        <span>ログイン状態を維持しますか？</span>
+      <% end %>
 
 
-  <%= f.submit "ログイン" %>
-<% end %>
+      <%= f.submit "ログイン", class: "btn" %>
+    <% end %>
 
-<p>新しいユーザーですか？<%= link_to "登録する",  new_user_path %></p>
+    <p>新しいユーザーですか？<%= link_to "新規登録する",  new_user_path %></p>
+  </div>
+</div>
