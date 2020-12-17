@@ -1,9 +1,16 @@
-<%= form_with(model: @photo, local: true) do |f| %>
-  <%= f.label :f_number, "F値" %>
-  <%= f.text_field :f_number %>
+<% provide(:title, "撮影記録編集") %>
 
-  <%= f.label :shutter_speed, "シャッタースピード" %>
-  <%=  f.text_field :shutter_speed %>
+<div class="container">
+  <div class="form-wrapper">
+    <h1>撮影記録　編集</h1>
+    <%= form_with(model: @photo, local: true) do |f| %>
+      <%= f.label :f_number, "F値" %>
+      <%= f.text_field :f_number, class: "form-control" %>
 
-  <%= f.submit "撮影記録を編集" %>
-<% end %>
+      <%= f.label :shutter_speed, "シャッタースピード" %>
+      <%=  f.text_field :shutter_speed, class: "form-control" %>
+
+      <%= f.submit "撮影記録を更新", class: "btn" %>
+    <% end %>
+   </div>
+</div>

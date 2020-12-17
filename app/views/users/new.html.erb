@@ -1,17 +1,22 @@
-<h1>user new</h1>
+<% provide(:title, "ユーザ登録") %>
 
-<%= form_with(url: user_path, scope: :user, local: true) do |f| %>
-  <%= f.label :name, "アカウント名" %>
-  <%= f.text_field :name %>
+<div class="container">
+  <div class="form-wrapper">
+    <h1>ユーザ登録</h1>
+    <%= form_with(url: user_path, scope: :user, local: true) do |f| %>
+      <%= f.label :name, "アカウント名" %>
+      <%= f.text_field :name, class: "form-control" %>
 
-  <%= f.label :email, "Emailアドレス" %>
-  <%=  f.email_field :email %>
+      <%= f.label :email, "Emailアドレス" %>
+      <%=  f.email_field :email, class: "form-control"  %>
 
-  <%= f.label :password, "パスワード" %>
-  <%= f.password_field :password %>
+      <%= f.label :password, "パスワード" %>
+      <%= f.password_field :password, class: "form-control"  %>
 
-  <%= f.label :password_confirmation, "パスワード(確認)" %>
-  <%= f.password_field :password_confirmation %>
+      <%= f.label :password_confirmation, "パスワード(確認)" %>
+      <%= f.password_field :password_confirmation, class: "form-control"  %>
 
-  <%= f.submit "新規ユーザーを登録" %>
-<% end %>
+      <%= f.submit "新規ユーザーを登録", class: "btn" %>
+    <% end %>
+  </div>
+</div>

@@ -1,12 +1,9 @@
-<%= form_with(model: @film, local: true) do |f| %>
-  <%= f.label :name, "フィルム名" %>
-  <%= f.text_field :name %>
+<% provide(:title, "フィルム作成") %>
+<% provide(:button_text, "フィルムを作成") %>
 
-  <%= f.label :company, "フィルムメーカー" %>
-  <%=  f.text_field :company %>
-
-  <%= f.label :iso, "感度 ISO/ASA" %>
-  <%= f.text_field :iso %>
-
-  <%= f.submit "フィルムを登録" %>
-<% end %>
+<div class="container">
+  <div class="form-wrapper">
+    <h1>フィルム作成</h1>
+    <%= render 'films/form' %>
+  </div>
+</div>

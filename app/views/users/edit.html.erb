@@ -1,17 +1,23 @@
-<h1>user edit</h1>
+<% provide(:title, "ユーザ編集") %>
 
-<%= form_with(url: user_path, method: :patch, scope: :user, local: true) do |f| %>
-  <%= f.label :name, "アカウント名" %>
-  <%= f.text_field :name %>
+<div class="container">
+  <div class="form-wrapper">
+    <h1>ユーザ編集</h1>
 
-  <%= f.label :email, "Emailアドレス" %>
-  <%=  f.email_field :email %>
+    <%= form_with(url: user_path, method: :patch, scope: :user, local: true) do |f| %>
+      <%= f.label :name, "アカウント名" %>
+      <%= f.text_field :name, class: "form-control" %>
 
-  <%= f.label :password, "パスワード" %>
-  <%= f.password_field :password %>
+      <%= f.label :email, "Emailアドレス" %>
+      <%=  f.email_field :email, class: "form-control"  %>
 
-  <%= f.label :password_confirmation, "パスワード(確認)" %>
-  <%= f.password_field :password_confirmation %>
+      <%= f.label :password, "パスワード" %>
+      <%= f.password_field :password, class: "form-control"  %>
 
-  <%= f.submit "ユーザーを編集" %>
-<% end %>
+      <%= f.label :password_confirmation, "パスワード(確認)" %>
+      <%= f.password_field :password_confirmation, class: "form-control"  %>
+
+      <%= f.submit "ユーザーを編集", class: "btn" %>
+    <% end %>
+  </div>
+</div>
