@@ -95,6 +95,47 @@ body {
   border-radius: 20px;
   text-align: center;
   border: 0px none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgba(108, 174, 179, 0.6);
+}
+
+/* showページで表示するinfo関連 */
+.info-wrapper {
+  float: left;
+  width: 35%;
+  margin: 0 2.5%;
+
+  .info {
+    border: 2px solid gray;
+    width: 80%;
+    margin: 20px 10%;
+    padding: 0px 10px;
+  }
+
+  .info-btn {
+    .btn-left {
+      float: left;
+      width: 45%;
+    }
+    .btn-right {
+      float: right;
+      width: 45%;
+      background-color: #e8384f;
+    }
+
+    .btn-right:hover {
+      background-color: rgba(232, 56, 79, 0.6);
+    }
+  }
+}
+
+/* showページで表示する一覧関連 */
+.index-wrapper {
+  float: right;
+  width: 60%;
 }
 
 #text-button {
@@ -112,4 +153,11 @@ body {
 
 .debug_dump {
   display: none;
+}
+
+/* float解除 */
+.clearfix:after {
+  content: "";
+  clear: both;
+  display: block;
 }

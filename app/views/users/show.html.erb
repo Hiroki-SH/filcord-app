@@ -1,11 +1,16 @@
-<% if logged_in? %>
-  <%= current_user.name %>
-  <%= current_user.email %>
-  <%= link_to "ログアウト", logout_path, method: :delete %>
-  <%= link_to "編集", edit_user_path %>
-  <%= link_to "フィルムを追加する", new_film_path %>
-  <%= link_to("削除する", user_path, method: :delete, data: { confirm: "本当に消しますか？"}) %></li>
+<div class="info-wrapper">
+  <div class="info">
+    <p><%= current_user.name %></p>
+    <p><%= current_user.email %></p>
+    <div class="info-btn clearfix">
+      <%= link_to "編集", edit_user_path, class: "btn btn-left" %>
+      <%= link_to "削除", user_path, { method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-right" }%></li>
+    </div>
+  </div>
+  <%= link_to "フィルムを追加する", new_film_path, class: "btn" %>
+</div>
 
+<div class="index-wrapper">
   <% if current_user.films.any? %>
     <h3>フィルム</h3>
     <ol>
@@ -13,6 +18,4 @@
     </ol>
     <%= will_paginate @films %>
   <% end %>
-<% else %>
-  あなたはログインしていません
-<% end %>
+<div>
