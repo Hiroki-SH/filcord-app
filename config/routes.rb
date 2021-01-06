@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :films, only: [:show, :new, :create, :edit, :update, :destroy]
-  resources :photos, only: [:show, :create, :edit, :update, :destroy]
+  resources :photos, only: [:show, :new, :create, :edit, :update, :destroy]
   resource :user #単数系リソースの使用
 end

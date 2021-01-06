@@ -18,7 +18,7 @@ class FilmsController < ApplicationController
       # redirect_to @film
       redirect_to user_url
     else
-      render 'films/new'
+      render :new
     end
   end
 
@@ -31,7 +31,7 @@ class FilmsController < ApplicationController
       # redirect_to @film
       redirect_to user_url
     else
-      render 'films/edit'
+      render :edit
     end
   end
 

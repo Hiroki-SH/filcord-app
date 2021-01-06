@@ -5,15 +5,21 @@ class PhotosController < ApplicationController
   def show
   end
 
+  def new
+    @film_id = params[:film_id]
+    @photo = Photo.new
+  end
+
 
   def create
+    @film_id = params[:film_id]
     @film = Film.find(params[:film_id])
     @photo = @film.photos.build(photo_params)
     if @photo.save
       redirect_to @film
     else
       @photos = @film.photos.paginate(page: params[:page])
-      render 'films/show'
+      render :new
     end
   end
 

@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       # flash[:success] = "新しいフィルムを登録しました！"
       redirect_to user_url
     else
-      render 'users/new'
+      render :new
     end
   end
 
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
       # flash[:success] = "フィルム情報を更新しました！"
       redirect_to user_url
     else
-      render 'users/edit'
+      render :edit
     end
   end
 
