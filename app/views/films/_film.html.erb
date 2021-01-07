@@ -2,7 +2,7 @@
   <%= link_to(film.name, film_path(film)) %>
   <%= film.company %>
   <%= film.iso %>
-  <%= film.created_at %>
+  <%= l film.created_at %>
   <%= link_to("編集する", edit_film_path(film)) %>
   <%= link_to("削除する", film, method: :delete, data: { confirm: "本当に消しますか？"}) %>
 </li>

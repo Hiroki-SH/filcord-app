@@ -12,20 +12,18 @@
 
   <body>
     <header>
-      <div class="container">
-        <div class="header-left">
-          <%= link_to "Filcord", root_path, class: "logo" %>
-        </div>
+      <div class="header-left">
+        <%= link_to "Filcord", root_path, class: "logo" %>
+      </div>
 
-        <div class="header-right">
-          <% if logged_in? %>
-            <%= link_to current_user.name, user_path %>
-            <%= link_to "ログアウト", logout_path, method: :delete %>
-          <% else %>
-            <%= link_to "ログイン", login_path %>
-            <%= link_to "新規登録", new_user_path %>
-          <% end %>
-        </div>
+      <div class="header-right">
+        <% if logged_in? %>
+          <%= link_to current_user.name, user_path %>
+          <%= link_to "ログアウト", logout_path, method: :delete %>
+        <% else %>
+          <%= link_to "ログイン", login_path %>
+          <%= link_to "新規登録", new_user_path %>
+        <% end %>
       </div>
     </header>
     <%= yield %>

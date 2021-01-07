@@ -30,7 +30,7 @@ var optionObj = {
 	"maximumAge": 5000 ,
 };
 
-document.getElementById("text-button").onclick = function(){ //htmlのid"text_button"が押された時
+document.getElementById("map-button").onclick = function(){ //htmlのid"text_button"が押された時
 // 使用端末が位置情報に対応している場合
   if (navigator.geolocation)
   {

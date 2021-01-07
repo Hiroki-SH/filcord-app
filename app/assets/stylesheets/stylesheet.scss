@@ -6,6 +6,19 @@ a {
   text-decoration: none;
 }
 
+
+body {
+  padding-top: 65px;
+  margin: 0;
+}
+
+.container {
+  // max-width: 1170px;
+  width: 95%;
+  margin: 0 2.5%;
+}
+
+
 /* header関連 */
 header {
   height: 65px;
@@ -14,34 +27,34 @@ header {
   position :fixed;
   top: 0;
   z-index: 10;
+}
 
-  .logo {
-    color: white;
+.header-left {
+  float: left;
+}
+
+.header-right {
+  float: right;
+  a {
     line-height: 65px;
-    padding-left: 25px;
+    padding: 0px 12px;
+    color: white;
     display: block;
-    font-size: 25px;
-    // font-family: ;あとで決める
-  }
-
-  .header-left {
     float: left;
   }
 
-  .header-right {
-    float: right;
-    a {
-      line-height: 65px;
-      padding: 0px 12px;
-      color: white;
-      display: block;
-      float: left;
-    }
-
-    a:hover {
-      background-color: rgba(255, 255, 255, 0.3);
-    }
+  a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
   }
+}
+
+.logo {
+  color: white;
+  line-height: 65px;
+  padding-left: 25px;
+  display: block;
+  font-size: 25px;
+  // font-family: ;あとで決める
 }
 
 /* form関連 */
@@ -63,16 +76,6 @@ header {
       margin-bottom: 25px;
     }
   }
-}
-
-body {
-  padding-top: 65px;
-  margin: 0;
-}
-
-.container {
-  // max-width: 1170px;
-  width: 100%;
 }
 
 .top-wrapper {
@@ -102,34 +105,42 @@ body {
   background-color: rgba(108, 174, 179, 0.6);
 }
 
+#map-button {
+  font-size: 13.3333px;
+  background-color: white;
+  border: #6caeb3 0.5px solid;
+}
+
+#map-button:hover {
+  background-color: #eaf3f3;
+}
+
 /* showページで表示するinfo関連 */
 .info-wrapper {
   float: left;
   width: 35%;
   margin: 0 2.5%;
+}
 
-  .info {
-    border: 2px solid gray;
-    width: 80%;
-    margin: 20px 10%;
-    padding: 0px 10px;
-  }
+.info {
+  border: 2px solid gray;
+  width: 80%;
+  margin: 20px 10%;
+  padding: 0px 10px;
+}
 
-  .info-btn {
-    .btn-left {
-      float: left;
-      width: 45%;
-    }
-    .btn-right {
-      float: right;
-      width: 45%;
-      background-color: #e8384f;
-    }
+.btn-left {
+  float: left;
+  width: 45%;
+}
+.btn-right {
+  float: right;
+  width: 45%;
+  background-color: #e8384f;
+}
 
-    .btn-right:hover {
-      background-color: rgba(232, 56, 79, 0.6);
-    }
-  }
+.btn-right:hover {
+  background-color: rgba(232, 56, 79, 0.6);
 }
 
 /* showページで表示する一覧関連 */
@@ -138,17 +149,27 @@ body {
   width: 60%;
 }
 
-#text-button {
-  display: block;
-  cursor: pointer;
-  width: 160px;
-  text-align: center;
-  border: 1px solid #232323;
+/* photo newとshowの左側(登録フォーム or 詳細情報) */
+.photo-left {
+  float: left;
+  width: 45%;
+  margin: 0 2.5%;
 }
 
-#map {
-  height: 400px;
-  width: 400px;
+/* photo newとshowの右側(google map) */
+.photo-right {
+  height: 0;
+  overflow: hidden;
+  padding-top: 50%;
+  position: relative;
+
+  #map {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .debug_dump {

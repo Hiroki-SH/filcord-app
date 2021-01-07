@@ -1,13 +1,15 @@
+<% provide(:title, "フィルム一覧") %>
+
 <div class="info-wrapper">
   <div class="info">
     <p><%= current_user.name %></p>
     <p><%= current_user.email %></p>
-    <div class="info-btn clearfix">
+    <div class="clearfix">
       <%= link_to "編集", edit_user_path, class: "btn btn-left" %>
       <%= link_to "削除", user_path, { method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-right" }%></li>
     </div>
   </div>
-  <%= link_to "フィルムを追加する", new_film_path, class: "btn" %>
+  <%= link_to "フィルムを登録する", new_film_path, class: "btn" %>
 </div>
 
 <div class="index-wrapper">
