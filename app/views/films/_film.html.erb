@@ -1,8 +1,7 @@
-<li>
-  <%= link_to(film.name, film_path(film)) %>
-  <%= film.company %>
-  <%= film.iso %>
-  <%= l film.created_at %>
-  <%= link_to("編集する", edit_film_path(film)) %>
-  <%= link_to("削除する", film, method: :delete, data: { confirm: "本当に消しますか？"}) %>
+<li class="index-list">
+    <p><%= film.name %></p>
+    <%= link_to("", film_path(film)) %>
+    <span class="timestamp">
+      <%= l film.created_at %>
+    </span>
 </li>
