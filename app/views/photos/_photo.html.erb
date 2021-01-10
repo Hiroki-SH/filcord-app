@@ -1,5 +1,8 @@
-<li>
-  <%= link_to photo.f_number, photo %>
-  <%= photo.shutter_speed %>
-  <%= l photo.created_at %>
+<li class="index-list">
+  <p>F値：<%= photo.f_number %></p>
+  <p>シャッタースピード：<%= photo.shutter_speed %></p>
+  <%= link_to "", photo %>
+  <span class="timestamp">
+    <%= l photo.created_at %>
+  </span>
 </li>

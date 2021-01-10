@@ -1,25 +1,27 @@
-<% provide(:title, "写真一覧") %>
+<% provide(:title, "記録一覧") %>
 
-<div class="info-wrapper">
-  <div class="info">
-    <p><%= @film.name %></p>
-    <p>フィルムメーカ：<%= @film.company %></p>
-    <p>iso感度：<%= @film.iso %></p>
-    <p>登録日：<%= l @film.created_at %>
-    <div class="info-btn clearfix">
-      <%= link_to "フィルム編集", edit_film_path(@film), class: "btn btn-left" %>
-      <%= link_to "フィルム削除", @film, { method: :delete, data: { confirm: "本当に消しますか？"}, class: "btn btn-right" }%>
+<div class="container">
+  <div class="info-wrapper">
+    <div class="info">
+      <p><%= @film.name %></p>
+      <p>フィルムメーカ：<%= @film.company %></p>
+      <p>iso感度：<%= @film.iso %></p>
+      <p>登録日：<%= l @film.created_at %>
+      <div class="info-btn clearfix">
+        <%= link_to "フィルム編集", edit_film_path(@film), class: "btn btn-left" %>
+        <%= link_to "フィルム削除", @film, { method: :delete, data: { confirm: "本当に消しますか？"}, class: "btn btn-right" }%>
+      </div>
     </div>
+    <%= link_to "撮影記録を追加", new_photo_path(film_id: @film.id), class: "btn" %>
   </div>
-  <%= link_to "撮影記録を追加", new_photo_path(film_id: @film.id), class: "btn" %>
-</div>
-  
-<div class="index-wrapper">
-  <% if @film.photos.any? %>
-    <h3>撮影記録</h3>
-    <ol>
-      <%= render @photos %>
-    </ol>
-    <%= will_paginate @photos %>
-  <% end %>
+    
+  <div class="index-wrapper">
+    <% if @film.photos.any? %>
+      <h3>撮影記録一覧</h3>
+      <ol>
+        <%= render @photos %>
+      </ol>
+      <%= will_paginate @photos %>
+    <% end %>
+  </div>
 </div>
