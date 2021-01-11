@@ -14,7 +14,7 @@
       <%= link_to "削除する", @photo, { method: :delete, data: { confirm: "本当に消しますか？"}, class: "btn btn-right" } %>
   </div>
 
-  <% unless @photo.lat.nil? then %> 
+  <% unless @photo.lat.empty? then %> 
     <div hidden id="lat"><%= @photo.lat %></div>
     <div hidden id="lng"><%= @photo.lng %></div>
     <div class="photo-right">
