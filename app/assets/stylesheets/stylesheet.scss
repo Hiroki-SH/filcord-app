@@ -225,3 +225,42 @@ header {
   @import "bootstrap-sprockets";
   @import "bootstrap";
 }
+
+/* スマホ向け */
+@media all and (max-width: 670px) {
+  // .header-right {
+  //   display: none;
+  // }
+
+  // .top-wrapper {
+  //   text-align: left;
+  // }
+  h1 {
+    font-size: 20px;
+  }
+
+  .btn {
+    width: 100%;
+    float: none;
+  }
+
+  .info-wrapper, .photo-left{
+    float: none;
+    width: 95%;
+  }
+
+  .index-wrapper {
+    float: none;
+    margin: 0 2.5%;
+    width: 95%;
+  }
+
+  .info {
+    margin: 20px 0;
+    width: 100%;
+  }
+
+  .photo-right {
+    padding-top: 100%;
+  }
+}
