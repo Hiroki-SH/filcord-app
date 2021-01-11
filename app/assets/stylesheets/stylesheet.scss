@@ -212,3 +212,8 @@ header {
   clear: both;
   display: block;
 }
+
+.bootstrap {
+  @import "bootstrap-sprockets";
+  @import "bootstrap";
+}

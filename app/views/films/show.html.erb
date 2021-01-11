@@ -21,7 +21,9 @@
       <ol>
         <%= render @photos %>
       </ol>
-      <%= will_paginate @photos %>
+      <div class="bootstrap">
+        <%= will_paginate @photos %>
+      </div>
     <% end %>
   </div>
 </div>

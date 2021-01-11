@@ -19,7 +19,9 @@
       <ol>
         <%= render @films %>
       </ol>
-      <%= will_paginate @films %>
+      <div class="bootstrap">
+        <%= will_paginate @films %>
+      </div>
     <% end %>
   </div>
 </div>
