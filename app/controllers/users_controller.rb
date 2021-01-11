@@ -9,9 +9,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in(@user)
-      # flash[:success] = "新しいフィルムを登録しました！"
+      flash[:success] = "ユーザーを登録しました"
       redirect_to user_url
     else
+      flash.now[:danger] = "ユーザーの登録に失敗しました"
       render :new
     end
   end
@@ -26,18 +27,18 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by(id: current_user.id)
-    # debugger
     if @user.update(user_params)
-      # flash[:success] = "フィルム情報を更新しました！"
+      flash[:success] = "ユーザーを更新しました"
       redirect_to user_url
     else
+      flash.now[:danger] = "ユーザーの更新に失敗しました"
       render :edit
     end
   end
 
   def destroy
     User.find(current_user.id).destroy
-    # flash[:success] = "ユーザーを削除しました！"
+    flash[:success] = "ユーザーを削除しました"
     redirect_to login_url
   end
 

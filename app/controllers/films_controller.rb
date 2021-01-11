@@ -14,10 +14,11 @@ class FilmsController < ApplicationController
   def create
     @film = current_user.films.build(film_params)
     if @film.save
-      # flash[:success] = "新しいフィルムを登録しました！"
+      flash[:success] = "新しいフィルムを登録しました"
       # redirect_to @film
       redirect_to user_url
     else
+      flash.now[:danger] = "フィルムの登録に失敗しました"
       render :new
     end
   end
@@ -27,17 +28,18 @@ class FilmsController < ApplicationController
 
   def update
     if @film.update(film_params)
-      # flash[:success] = "フィルム情報を更新しました！"
+      flash[:success] = "フィルム情報を更新しました"
       # redirect_to @film
       redirect_to user_url
     else
+      flash.now[:danger] = "フィルムの更新に失敗しました"
       render :edit
     end
   end
 
   def destroy
     @film.destroy
-    # flash[:success] = "フィルムを削除しました！"
+    flash[:success] = "フィルムを削除しました"
     redirect_to user_url
   end
 

@@ -16,9 +16,11 @@ class PhotosController < ApplicationController
     @film = Film.find(params[:film_id])
     @photo = @film.photos.build(photo_params)
     if @photo.save
+      flash[:success] = "撮影記録を追加しました"
       redirect_to @film
     else
       @photos = @film.photos.paginate(page: params[:page])
+      flash.now[:danger] = "撮影記録の追加に失敗しました"
       render :new
     end
   end
@@ -28,15 +30,17 @@ class PhotosController < ApplicationController
 
   def update
     if @photo.update(photo_params)
-      # flash[:success] = "撮影情報を更新しました！"
+      flash[:success] = "撮影記録を更新しました"
       redirect_to film_url(@photo.film_id)
     else
+      flash.now[:danger] = "撮影記録の更新に失敗しました"
       render :edit
     end
   end
 
   def destroy
     @photo.destroy
+    flash[:success] = "撮影記録を削除しました"
     redirect_to film_url(@photo.film_id)
   end
 
