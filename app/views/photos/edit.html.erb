@@ -4,6 +4,7 @@
   <div class="form-wrapper">
     <h1>撮影記録　編集</h1>
     <%= form_with(model: @photo, local: true) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
       <%= f.label :f_number, "F値" %>
       <%= f.text_field :f_number, class: "form-control" %>
 

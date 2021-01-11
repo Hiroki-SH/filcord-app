@@ -3,3 +3,21 @@ ja:
     formats:
       default: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
+  activerecord:
+    models:
+      photo: 撮影記録
+      film: フィルム
+      user: ユーザー
+    attributes:
+      photo:
+        f_number: F値
+        shutter_speed: シャッタースピード
+      film:
+        name: フィルム名
+        iso: 感度 ISO/ASA
+      user:
+        name: ユーザー名
+        email: Emailアドレス
+        password: パスワード
+        password_confirmation: パスワード(確認)
+      

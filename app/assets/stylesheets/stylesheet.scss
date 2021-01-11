@@ -109,6 +109,14 @@ header {
   background-color: rgba(108, 174, 179, 0.6);
 }
 
+/* フォームのエラーメッセージ */
+.error-explanation {
+  ul {
+    color: red;
+    text-align: left;
+  }
+}
+
 #map-button {
   font-size: 13.3333px;
   background-color: white;
