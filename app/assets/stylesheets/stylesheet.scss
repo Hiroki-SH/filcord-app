@@ -139,6 +139,10 @@ header {
   width: 80%;
   margin: 20px 10%;
   padding: 0px 10px;
+
+  p {
+    word-break: break-all;
+  }
 }
 
 .btn-left {
@@ -226,15 +230,19 @@ header {
   @import "bootstrap";
 }
 
+/* タブレット向け */
+@media all and (max-width: 1000px) {
+  .info-wrapper{
+    width: 45%;
+  }
+
+  .index-wrapper {
+    width: 45%;
+  }
+}
+
 /* スマホ向け */
 @media all and (max-width: 670px) {
-  // .header-right {
-  //   display: none;
-  // }
-
-  // .top-wrapper {
-  //   text-align: left;
-  // }
   h1 {
     font-size: 20px;
   }
