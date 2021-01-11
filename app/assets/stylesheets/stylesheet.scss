@@ -93,6 +93,7 @@ header {
 }
 
 .btn {
+  font-size: 14px;
   padding: 8px 30px;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -103,6 +104,7 @@ header {
   text-align: center;
   border: 0px none;
   cursor: pointer;
+  -webkit-appearance: none;
 }
 
 .btn:hover {
@@ -118,7 +120,6 @@ header {
 }
 
 #map-button {
-  font-size: 13.3333px;
   background-color: white;
   border: #6caeb3 0.5px solid;
 }
