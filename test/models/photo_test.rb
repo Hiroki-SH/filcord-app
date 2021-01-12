@@ -1,9 +1,6 @@
 require 'test_helper'
 
 class PhotoTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
   def setup
     @film = films(:film1)
     @photo = @film.photos.build(f_number: "2.8", shutter_speed: "1/125")

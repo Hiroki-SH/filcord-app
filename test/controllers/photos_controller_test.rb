@@ -1,21 +1,44 @@
 require 'test_helper'
 
 class PhotosControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
-
   def setup
     @user = users(:user1)
     @other_user = users(:user2)
     @photo = photos(:photo1)
+    @photo_no_latlng = photos(:photo2)
     @other_user_photo = photos(:photo4)
+    @other_user_film = films(:film4)
   end
 
-  # test "ログインせずに作成画面にリクエストしてリダイレクトされるか" do
-  #   get new_photo_path
-  #   assert_redirected_to login_url
-  # end
+  test "show getできるか" do
+    log_in_as(@user)
+    get photo_path(@photo)
+    assert_response :success
+  end
+
+  test "new getできるか" do
+    log_in_as(@user)
+    get new_photo_path
+    assert_response :success
+  end
+
+  test "edit getできるか" do
+    log_in_as(@user)
+    get edit_photo_path(@photo)
+    assert_response :success
+  end
+
+  test "ログインせずに記録詳細画面にリクエストしてリダイレクトされるか" do
+    get photo_path(@photo)
+    assert_not flash.empty?
+    assert_redirected_to login_url
+  end
+
+  test "ログインせずに作成画面にリクエストしてリダイレクトされるか" do
+    get new_photo_path
+    assert_not flash.empty?
+    assert_redirected_to login_url
+  end
 
   test "ログインせずに作成しようとしてリダイレクトされるか" do
     assert_no_difference 'Photo.count' do
@@ -26,11 +49,13 @@ class PhotosControllerTest < ActionDispatch::IntegrationTest
         }
       }
     end
+    assert_not flash.empty?
     assert_redirected_to login_url
   end
 
   test "ログインせずに編集画面にリクエストしてリダイレクトされるか" do
     get edit_photo_path(@photo)
+    assert_not flash.empty?
     assert_redirected_to login_url
   end
 
@@ -41,6 +66,7 @@ class PhotosControllerTest < ActionDispatch::IntegrationTest
         shutter_speed: "1/2000"
       }
     }
+    assert_not flash.empty?
     assert_redirected_to login_url
   end
 
@@ -49,12 +75,36 @@ class PhotosControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference 'Photo.count' do
       delete photo_path(@photo)
     end
+    assert_not flash.empty?
+    assert_redirected_to login_url
+  end
+
+  test "違うユーザの記録詳細画面にアクセスしてリダイレクトされるか" do
+    log_in_as(@other_user)
+    get photo_path(@photo)
+    assert_not flash.empty?
+    assert_redirected_to login_url
+  end
+
+  test "違うユーザのfilmでphotoを登録しようとしてリダイレクトされるか" do
+    log_in_as(@user)
+    assert_no_difference 'Photo.count' do
+      post photos_path, params: {
+        photo: {
+          f_number: "8",
+          shutter_speed: "1/125"
+        },
+        film_id: @other_user_film.id
+      }
+    end
+    assert_not flash.empty?
     assert_redirected_to login_url
   end
 
   test "違うユーザのphotoの編集画面にアクセスしてリダイレクトされるか" do
     log_in_as(@other_user)
     get edit_photo_path(@photo)
+    assert_not flash.empty?
     assert_redirected_to login_url
   end
 
@@ -66,6 +116,7 @@ class PhotosControllerTest < ActionDispatch::IntegrationTest
         shutter_speed: "1/2000"
       }
     }
+    assert_not flash.empty?
     assert_redirected_to login_url
   end
 
@@ -74,6 +125,7 @@ class PhotosControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference 'Photo.count' do
       delete photo_path(@photo)
     end
+    assert_not flash.empty?
     assert_redirected_to login_url
   end
 
@@ -94,5 +146,17 @@ class PhotosControllerTest < ActionDispatch::IntegrationTest
       delete photo_path(@photo)
     end
     assert_redirected_to film_url(@photo.film_id)
+  end
+
+  test "showで緯度経度が保存されていないとき、マップは表示されないか" do
+    log_in_as(@user)
+
+    # 緯度経度がないとき
+    get photo_path(@photo_no_latlng)
+    assert_select "div#map", count: 0
+
+    # 緯度経度があるとき
+    get photo_path(@photo)
+    assert_select "div#map", count: 1
   end
 end

@@ -1,32 +1,39 @@
 require 'test_helper'
 
 class FilmsControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
   def setup
     @user = users(:user1)
     @film = films(:film1)
     @other_user_film = films(:film4)
   end
 
-  # test "indexアクションをgetできるか" do
-  #   get films_path
-  #   assert_response :success
-  # end
+  test "show getできるか" do
+    log_in_as(@user)
+    get film_path(@film)
+    assert_response :success
+  end
 
-  # test "newアクションをgetできるか" do
-  #   get new_film_path
-  #   assert_response :success
-  # end
+  test "new getできるか" do
+    log_in_as(@user)
+    get new_film_path
+    assert_response :success
+  end
+
+  test "edit getできるか" do
+    log_in_as(@user)
+    get edit_film_path(@film)
+    assert_response :success
+  end
 
   test "ログインせずにフィルム詳細画面にリクエストしてリダイレクトされるか" do
     get film_path(@film)
+    assert_not flash.empty?
     assert_redirected_to login_url
   end
 
   test "ログインせずに作成画面にリクエストしてリダイレクトされるか" do
     get new_film_path
+    assert_not flash.empty?
     assert_redirected_to login_url
   end
 
@@ -40,11 +47,13 @@ class FilmsControllerTest < ActionDispatch::IntegrationTest
         }
       }
     end
+    assert_not flash.empty?
     assert_redirected_to login_url
   end
 
   test "ログインせずに編集画面にリクエストしてリダイレクトされるか" do
     get edit_film_path(@film)
+    assert_not flash.empty?
     assert_redirected_to login_url
   end
 
@@ -56,6 +65,7 @@ class FilmsControllerTest < ActionDispatch::IntegrationTest
         iso: "100"
       }
     }
+    assert_not flash.empty?
     assert_redirected_to login_url
   end
 
@@ -64,18 +74,21 @@ class FilmsControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference 'Film.count' do
       delete film_path(@film)
     end
+    assert_not flash.empty?
     assert_redirected_to login_url
   end
 
   test "違うユーザのフィルム詳細画面にリクエストしてリダイレクトされるか" do
     log_in_as(@user)
     get film_path(@other_user_film)
+    assert_not flash.empty?
     assert_redirected_to login_url
   end
 
   test "違うユーザのフィルム編集画面にリクエストしてリダイレクトされるか" do
     log_in_as(@user)
     get edit_film_path(@other_user_film)
+    assert_not flash.empty?
     assert_redirected_to login_url
   end
 
@@ -88,6 +101,7 @@ class FilmsControllerTest < ActionDispatch::IntegrationTest
         iso: "100"
       }
     }
+    assert_not flash.empty?
     assert_redirected_to login_url
   end
 
@@ -96,6 +110,7 @@ class FilmsControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference 'Film.count' do
       delete film_path(@other_user_film)
     end
+    assert_not flash.empty?
     assert_redirected_to login_url
   end
 end

@@ -10,4 +10,13 @@ class ApplicationController < ActionController::Base
         redirect_to login_url
       end
     end
+
+    def correct_user_film(id)
+      @film = Film.find(id)
+      # debugger
+      unless @film.user == current_user
+        store_location #現在のURLを保存。ログイン後このURLにリダイレクト
+        redirect_to login_url
+      end
+    end
 end

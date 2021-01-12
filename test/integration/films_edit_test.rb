@@ -1,9 +1,6 @@
 require 'test_helper'
 
 class FilmsEditTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
   def setup
     @user = users(:user1)
     @other_user = users(:user2)
@@ -22,10 +19,12 @@ class FilmsEditTest < ActionDispatch::IntegrationTest
       }  
     }
     assert_template 'films/edit'
+    assert_not flash.empty?
+    assert_select 'div.error-explanation'
   end
 
   test "filmの編集に成功するテスト" do
-    #フレンドリーフォワーディングのテスト
+    #フレンドリーフォワーディングのテストも含む
     log_in_as(@user)
     get edit_film_path(@other_user_film)
     assert_redirected_to login_url
@@ -40,6 +39,7 @@ class FilmsEditTest < ActionDispatch::IntegrationTest
         iso: iso
       }  
     }
+    assert_not flash.empty?
     assert_redirected_to user_url
     @other_user_film.reload
     assert_equal name, @other_user_film.name

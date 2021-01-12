@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
   before_action :logged_in_user
   before_action :correct_user, only: [:show, :edit, :update, :destroy]
+  before_action -> { correct_user_film(params[:film_id]) }, only: [:create]
 
   def show
   end
@@ -13,7 +14,6 @@ class PhotosController < ApplicationController
 
   def create
     @film_id = params[:film_id]
-    @film = Film.find(params[:film_id])
     @photo = @film.photos.build(photo_params)
     if @photo.save
       flash[:success] = "撮影記録を追加しました"

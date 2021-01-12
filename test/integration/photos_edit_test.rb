@@ -19,6 +19,8 @@ class PhotosEditTest < ActionDispatch::IntegrationTest
       }
     }
     assert_template 'photos/edit'
+    assert_not flash.empty?
+    assert_select 'div.error-explanation'
   end
 
   test "photoの編集に成功するテスト" do
@@ -37,6 +39,7 @@ class PhotosEditTest < ActionDispatch::IntegrationTest
         shutter_speed: shutter_speed
       }
     }
+    assert_not flash.empty?
     assert_redirected_to film_url(@other_user_photo.film_id)
     @other_user_photo.reload
     assert_equal f_number, @other_user_photo.f_number

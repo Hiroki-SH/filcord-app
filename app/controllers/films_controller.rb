@@ -1,6 +1,6 @@
 class FilmsController < ApplicationController
   before_action :logged_in_user
-  before_action :correct_user, only: [:show, :edit, :update, :destroy]
+  before_action -> { correct_user_film(params[:id]) }, only: [:show, :edit, :update, :destroy]
 
   def show
     @photos = @film.photos.paginate(page: params[:page])
@@ -46,13 +46,5 @@ class FilmsController < ApplicationController
   private
     def film_params
       params.require(:film).permit(:name, :company, :iso)
-    end
-
-    def correct_user
-      @film = Film.find(params[:id])
-      unless @film.user == current_user
-        store_location #現在のURLを保存。ログイン後このURLにリダイレクト
-        redirect_to (login_url) 
-      end
     end
 end

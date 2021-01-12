@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class FilmTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-
   def setup
     @user = users(:user1)
     @film = @user.films.build(name: "example_name", iso: "100")
