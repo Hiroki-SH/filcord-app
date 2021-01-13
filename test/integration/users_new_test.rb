@@ -7,11 +7,15 @@ class UsersNewTest < ActionDispatch::IntegrationTest
 
   test "有効なユーザを登録しようとしたとき" do
     get new_user_path
+    assert_template 'users/new'
+
+    name = "example user"
+    email = "test@example.com"
     assert_difference 'User.count', 1 do
       post user_path, params: {
         user: {
-          name: "example user",
-          email: "test@example.com",
+          name: name,
+          email: email,
           password: "hoge",
           password_confirmation: "hoge"
         }
@@ -19,7 +23,10 @@ class UsersNewTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_template 'users/show'
+    assert_not flash.empty?
     assert is_logged_in?
+    assert_match name, response.body
+    assert_match email, response.body
   end
 
   test "無効なユーザを登録したとき" do
@@ -35,5 +42,7 @@ class UsersNewTest < ActionDispatch::IntegrationTest
       }
     end
     assert_template 'users/new'
+    assert_not flash.empty?
+    assert_select 'div.error-explanation'
   end
 end

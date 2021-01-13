@@ -18,21 +18,30 @@ class UsersEditTest < ActionDispatch::IntegrationTest
       }
     }
     assert_template 'users/edit'
+    assert_not flash.empty?
+    assert_select 'div.error-explanation'
   end
 
   test "userの編集(edit)に成功するテスト" do
     log_in_as(@user)
     get edit_user_path
     assert_template 'users/edit'
+
+    name = "test_edit"
+    email = "test_edit@example.com"
     patch user_path, params: { 
       user: {
-        name: "test_edit",
-        email: "test_edit@example.com",
+        name: name,
+        email: email,
         password: "",
         password_confirmation: ""
       }
     }
+    assert_not flash.empty?
     follow_redirect!
     assert_template 'users/show'
+    @user.reload
+    assert_equal name, @user.name
+    assert_equal email, @user.email
   end
 end
