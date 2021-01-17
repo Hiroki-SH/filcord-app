@@ -21,6 +21,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_not is_logged_in?
     assert_template 'sessions/new'
     assert_not flash.empty?
+    assert_select 'div.error-explanation'
     get root_url
     assert flash.empty?
   end
