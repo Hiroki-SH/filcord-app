@@ -11,7 +11,7 @@
       <p>シャッタースピード：<%= @photo.shutter_speed %></p>
     </div>
       <%= link_to "編集する", edit_photo_path(@photo), class: "btn btn-left" %>
-      <%= link_to "削除する", @photo, { method: :delete, data: { confirm: "本当に消しますか？"}, class: "btn btn-right" } %>
+      <%= link_to "削除する", @photo, { method: :delete, data: { confirm: "本当に消しますか？"}, class: "btn btn-delete btn-right" } %>
   </div>
 
   <% unless @photo.lat.empty? then %> 

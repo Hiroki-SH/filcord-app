@@ -5,10 +5,7 @@
     <div class="info">
       <p><%= current_user.name %></p>
       <p><%= current_user.email %></p>
-      <div class="clearfix">
-        <%= link_to "編集", edit_user_path, class: "btn btn-left" %>
-        <%= link_to "削除", user_path, { method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-right" }%></li>
-      </div>
+      <%= link_to "編集", edit_user_path, class: "btn btn-user-edit" %>
     </div>
     <%= link_to "フィルムを登録する", new_film_path, class: "btn" %>
   </div>

@@ -20,5 +20,7 @@
 
       <%= f.submit "ユーザーを編集", class: "btn" %>
     <% end %>
+
+    <%= link_to "ユーザーを削除", user_path, { method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-delete" }%></li>
   </div>
 </div>
