@@ -1,0 +1,21 @@
+<% provide(:title, "パスワード変更") %>
+
+<div class="container">
+  <div class="form-wrapper">
+    <h1>パスワード変更</h1>
+
+    <%= form_with(url: password_path, method: :patch, scope: :user, local: true) do |f| %>
+      <%= render 'shared/error_messages', object: @user %>
+      <%= f.label :current_password, "今のパスワード" %>
+      <%= f.password_field :current_password, class: "form-control" %>
+
+      <%= f.label :password, "新パスワード" %>
+      <%= f.password_field :password, class: "form-control" %>
+
+      <%= f.label :password_confirmation, "新パスワード(確認)" %>
+      <%= f.password_field :password_confirmation, class: "form-control" %>
+
+      <%= f.submit "パスワード変更", class: "btn" %>
+    <% end %>
+  </div>
+</div>

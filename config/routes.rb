@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :films, only: [:show, :new, :create, :edit, :update, :destroy]
   resources :photos, only: [:show, :new, :create, :edit, :update, :destroy]
   resource :user #単数系リソースの使用
+  resource :password, only: [:edit, :update]
 end

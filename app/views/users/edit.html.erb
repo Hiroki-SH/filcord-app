@@ -1,8 +1,8 @@
-<% provide(:title, "ユーザ編集") %>
+<% provide(:title, "ユーザー編集") %>
 
 <div class="container">
   <div class="form-wrapper">
-    <h1>ユーザ編集</h1>
+    <h1>ユーザー編集</h1>
 
     <%= form_with(url: user_path, method: :patch, scope: :user, local: true) do |f| %>
       <%= render 'shared/error_messages', object: @user %>
@@ -12,15 +12,11 @@
       <%= f.label :email, "Emailアドレス" %>
       <%=  f.email_field :email, class: "form-control"  %>
 
-      <%= f.label :password, "パスワード" %>
-      <%= f.password_field :password, class: "form-control"  %>
-
-      <%= f.label :password_confirmation, "パスワード(確認)" %>
-      <%= f.password_field :password_confirmation, class: "form-control"  %>
-
       <%= f.submit "ユーザーを編集", class: "btn" %>
     <% end %>
 
-    <%= link_to "ユーザーを削除", user_path, { method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-delete" }%></li>
+      <%= link_to "パスワードを変更", edit_password_path, class: "btn" %>
+      <%= link_to "ユーザーを削除", user_path, { method: :delete, data: { confirm: "本当に消しますか？" }, class: "btn btn-delete" }%></li>
+  
   </div>
 </div>

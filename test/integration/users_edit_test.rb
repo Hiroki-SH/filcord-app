@@ -13,8 +13,6 @@ class UsersEditTest < ActionDispatch::IntegrationTest
       user: {
         name: "",
         email: "test@example,com",
-        password: "hoge",
-        password_confirmation: "fuga"
       }
     }
     assert_template 'users/edit'
@@ -32,9 +30,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     patch user_path, params: { 
       user: {
         name: name,
-        email: email,
-        password: "",
-        password_confirmation: ""
+        email: email
       }
     }
     assert_not flash.empty?
