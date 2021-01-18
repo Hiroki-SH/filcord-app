@@ -36,15 +36,20 @@ header {
 .header-right {
   float: right;
   a {
-    line-height: 65px;
+    line-height: 55px;
+    margin: 5px 0;
+    margin-right: 5px;
     padding: 0px 12px;
-    color: white;
+    color: black;
+    font-size: 14px;
+    background-color: white;
+    border-radius: 20px;
     display: block;
     float: left;
   }
 
   a:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.7);
   }
 }
 
@@ -265,6 +270,10 @@ header {
   .btn {
     width: 100%;
     float: none;
+  }
+
+  .btn-user-edit {
+    margin-left: 0;
   }
 
   .info-wrapper, .photo-left{

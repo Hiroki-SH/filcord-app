@@ -7,7 +7,7 @@
   <%=  f.text_field :company, class: "form-control" %>
 
   <%= f.label :iso, "感度 ISO/ASA" %>
-  <%= f.text_field :iso, class: "form-control"%>
+  <%= f.number_field :iso, class: "form-control"%>
 
   <%= f.submit yield(:button_text), class: "btn" %>
 <% end %>
