@@ -18,9 +18,13 @@ class FilmsEditTest < ActionDispatch::IntegrationTest
         iso: ""
       }  
     }
+    follow_redirect!
     assert_template 'films/edit'
     assert_not flash.empty?
     assert_select 'div.error-explanation'
+
+    get request.original_url #リロードできるか
+    assert_template 'films/edit'
   end
 
   test "filmの編集に成功するテスト" do

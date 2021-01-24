@@ -4,7 +4,7 @@
   <div class="form-wrapper">
     <h1>ユーザ登録</h1>
     <%= form_with(url: user_path, scope: :user, local: true) do |f| %>
-      <%= render 'shared/error_messages', object: @user %>
+      <%= render 'shared/error_messages' %>
       <%= f.label :name, "ユーザー名" %>
       <%= f.text_field :name, class: "form-control" %>
 

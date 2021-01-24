@@ -8,7 +8,7 @@ class PhotosController < ApplicationController
 
   def new
     @film_id = params[:film_id]
-    @photo = Photo.new
+    @photo = Photo.new(session[:photo] || {})
   end
 
 
@@ -17,11 +17,14 @@ class PhotosController < ApplicationController
     @photo = @film.photos.build(photo_params)
     if @photo.save
       flash[:success] = "撮影記録を追加しました"
+      session[:photo] = nil
       redirect_to @film
     else
-      @photos = @film.photos.paginate(page: params[:page])
-      flash.now[:danger] = "撮影記録の追加に失敗しました"
-      render :new
+      # @photos = @film.photos.paginate(page: params[:page])
+      flash[:danger] = "撮影記録の追加に失敗しました"
+      flash[:validation_error] = @photo.errors.full_messages
+      session[:photo] = @photo.attributes.slice(*photo_params.keys) #sessionにフォームで入力された値のみ保存
+      redirect_to new_photo_url(film_id: @film.id)
     end
   end
 
@@ -33,8 +36,9 @@ class PhotosController < ApplicationController
       flash[:success] = "撮影記録を更新しました"
       redirect_to film_url(@photo.film_id)
     else
-      flash.now[:danger] = "撮影記録の更新に失敗しました"
-      render :edit
+      flash[:danger] = "撮影記録の更新に失敗しました"
+      flash[:validation_error] = @photo.errors.full_messages
+      redirect_to edit_photo_url(@photo)
     end
   end
 

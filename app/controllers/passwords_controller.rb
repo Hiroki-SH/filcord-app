@@ -10,26 +10,26 @@ class PasswordsController < ApplicationController
     if @user.authenticate(params[:user][:current_password])
 
       if params[:user][:password].empty? or params[:user][:password_confirmation].empty?
-        flash.now[:danger] = "パスワードの変更に失敗しました"
+        flash[:danger] = "パスワードの変更に失敗しました"
         @user.errors.clear
         @user.errors.add(:base, '新パスワードと新パスワード(確認)の両方を入力してください')
-        render :edit
+        error_redirect
       elsif @user.update(user_params)
         flash[:success] = "パスワードを変更しました"
         redirect_to user_url
       else
-        flash.now[:danger] = "パスワードの変更に失敗しました"
+        flash[:danger] = "パスワードの変更に失敗しました"
         @user.errors.clear
         @user.errors.add(:base, '新パスワードと新パスワード(確認)の入力が一致していません')
-        render :edit
+        error_redirect
       end
 
     else
-      flash.now[:danger] = "パスワードの変更に失敗しました"
+      flash[:danger] = "パスワードの変更に失敗しました"
       params[:user][:current_password].empty? ? 
         @user.errors.add(:base, '今のパスワードを入力してください') : 
         @user.errors.add(:base, '今のパスワードが違います')
-      render :edit
+      error_redirect
     end
 
   end
@@ -37,5 +37,10 @@ class PasswordsController < ApplicationController
   private
     def user_params
       params.require(:user).permit(:password, :password_confirmation)
+    end
+
+    def error_redirect
+      flash[:validation_error] = @user.errors.full_messages
+      redirect_to edit_password_url
     end
 end

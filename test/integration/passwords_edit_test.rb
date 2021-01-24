@@ -5,6 +5,16 @@ class PasswordsEditTest < ActionDispatch::IntegrationTest
     @user = users(:user1)
   end
 
+  def error_edit_redirect
+    follow_redirect!
+    assert_template 'passwords/edit'
+    assert_not flash.empty?
+    assert_select 'div.error-explanation'
+
+    get request.original_url #リロードできるか
+    assert_template 'passwords/edit'
+  end
+
   test "現在のパスワードが間違えていて失敗するテスト" do
     log_in_as(@user)
     get edit_password_path
@@ -16,9 +26,7 @@ class PasswordsEditTest < ActionDispatch::IntegrationTest
         password_confirmation: "hoge"
       } 
     }
-    assert_template 'passwords/edit'
-    assert_not flash.empty?
-    assert_select 'div.error-explanation'
+    error_edit_redirect
   end
 
   test "確認用パスワードが一致せずに失敗するテスト" do
@@ -32,9 +40,7 @@ class PasswordsEditTest < ActionDispatch::IntegrationTest
         password_confirmation: "fuga"
       } 
     }
-    assert_template 'passwords/edit'
-    assert_not flash.empty?
-    assert_select 'div.error-explanation'
+    error_edit_redirect
   end
 
   test "パスワードが空白により失敗するテスト" do
@@ -48,9 +54,7 @@ class PasswordsEditTest < ActionDispatch::IntegrationTest
         password_confirmation: "fuga"
       } 
     }
-    assert_template 'passwords/edit'
-    assert_not flash.empty?
-    assert_select 'div.error-explanation'
+    error_edit_redirect
   end
 
   test "確認パスワードが空白により失敗するテスト" do
@@ -64,9 +68,7 @@ class PasswordsEditTest < ActionDispatch::IntegrationTest
         password_confirmation: ""
       } 
     }
-    assert_template 'passwords/edit'
-    assert_not flash.empty?
-    assert_select 'div.error-explanation'
+    error_edit_redirect
   end
 
   test "新パスワード2つが空白により失敗するテスト" do
@@ -80,9 +82,7 @@ class PasswordsEditTest < ActionDispatch::IntegrationTest
         password_confirmation: ""
       } 
     }
-    assert_template 'passwords/edit'
-    assert_not flash.empty?
-    assert_select 'div.error-explanation'
+    error_edit_redirect
   end
 
   test "パスワードの変更に成功するテスト" do

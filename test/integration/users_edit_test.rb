@@ -15,9 +15,13 @@ class UsersEditTest < ActionDispatch::IntegrationTest
         email: "test@example,com",
       }
     }
+    follow_redirect!
     assert_template 'users/edit'
     assert_not flash.empty?
     assert_select 'div.error-explanation'
+
+    get request.original_url
+    assert_template 'users/edit'
   end
 
   test "userの編集(edit)に成功するテスト" do

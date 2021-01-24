@@ -19,6 +19,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
       }
     }
     assert_not is_logged_in?
+    follow_redirect!
     assert_template 'sessions/new'
     assert_not flash.empty?
     assert_select 'div.error-explanation'
@@ -26,7 +27,6 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert flash.empty?
   end
 
-  #ログインした後の挙動のテストを書く
   test "ログインしてログアウトする" do
     get login_path
     post login_path, params: {

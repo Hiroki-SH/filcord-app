@@ -5,7 +5,7 @@
     <h1>ユーザー編集</h1>
 
     <%= form_with(url: user_path, method: :patch, scope: :user, local: true) do |f| %>
-      <%= render 'shared/error_messages', object: @user %>
+      <%= render 'shared/error_messages' %>
       <%= f.label :name, "ユーザー名" %>
       <%= f.text_field :name, class: "form-control" %>
 

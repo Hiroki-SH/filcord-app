@@ -8,18 +8,20 @@ class FilmsController < ApplicationController
   end
 
   def new
-    @film = Film.new
+    @film = Film.new(session[:film] || {})
   end
 
   def create
     @film = current_user.films.build(film_params)
     if @film.save
       flash[:success] = "新しいフィルムを登録しました"
-      # redirect_to @film
+      session[:film] = nil
       redirect_to user_url
     else
-      flash.now[:danger] = "フィルムの登録に失敗しました"
-      render :new
+      flash[:danger] = "フィルムの登録に失敗しました"
+      flash[:validation_error] = @film.errors.full_messages
+      session[:film] = @film.attributes.slice(*film_params.keys) #sessionにフォームで入力された値のみ保存
+      redirect_to new_film_url
     end
   end
 
@@ -29,11 +31,11 @@ class FilmsController < ApplicationController
   def update
     if @film.update(film_params)
       flash[:success] = "フィルム情報を更新しました"
-      # redirect_to @film
       redirect_to user_url
     else
-      flash.now[:danger] = "フィルムの更新に失敗しました"
-      render :edit
+      flash[:danger] = "フィルムの更新に失敗しました"
+      flash[:validation_error] = @film.errors.full_messages
+      redirect_to edit_film_url(@film)
     end
   end
 

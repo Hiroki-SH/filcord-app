@@ -17,9 +17,13 @@ class PhotosNewTest < ActionDispatch::IntegrationTest
       },
       film_id: @film.id
     }
+    follow_redirect!
     assert_template 'photos/new'
     assert_not flash.empty?
     assert_select 'div.error-explanation'
+
+    get request.original_url #リロードできるか
+    assert_template 'photos/new'
   end
 
   test "photoの追加(new)に成功するテスト" do

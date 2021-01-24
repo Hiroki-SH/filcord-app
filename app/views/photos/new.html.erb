@@ -7,7 +7,7 @@
 <div class="container">
   <div class="form-wrapper photo-left">
     <%= form_with(model: @photo, local: true) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
+    <%= render 'shared/error_messages' %>
       <%= hidden_field_tag(:film_id, @film_id) %><!-- film.idを渡す -->
       <%= f.hidden_field(:lat) %><!-- JavaScriptで取得した緯度を渡す -->
       <%= f.hidden_field(:lng) %><!-- JavaScriptで取得した経度を渡す -->

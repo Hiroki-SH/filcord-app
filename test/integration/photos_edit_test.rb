@@ -18,9 +18,13 @@ class PhotosEditTest < ActionDispatch::IntegrationTest
         shutter_speed: ""
       }
     }
+    follow_redirect!
     assert_template 'photos/edit'
     assert_not flash.empty?
     assert_select 'div.error-explanation'
+
+    get request.original_url #リロードできるか
+    assert_template 'photos/edit'
   end
 
   test "photoの編集に成功するテスト" do

@@ -15,9 +15,13 @@ class FilmsNewTest < ActionDispatch::IntegrationTest
         iso: ""
       }
     }
+    follow_redirect!
     assert_template 'films/new'
     assert_not flash.empty?
     assert_select 'div.error-explanation'
+
+    get request.original_url #リロードできるか
+    assert_template 'films/new'
   end
 
   test "filmの追加(new)に成功するテスト" do

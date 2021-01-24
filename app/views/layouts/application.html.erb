@@ -24,9 +24,11 @@
     </header>
 
     <% flash.each do |message_type, message| %>
-      <div class="bootstrap">
-        <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
-      </div>
+      <% unless message_type == "validation_error" %>
+        <div class="bootstrap">
+          <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+        </div>
+      <% end %>
     <% end %>
     
     <%= yield %>

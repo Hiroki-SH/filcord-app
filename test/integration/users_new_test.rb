@@ -41,8 +41,12 @@ class UsersNewTest < ActionDispatch::IntegrationTest
         }
       }
     end
+    follow_redirect!
     assert_template 'users/new'
     assert_not flash.empty?
     assert_select 'div.error-explanation'
+
+    get request.original_url #リロードできるか
+    assert_template 'users/new'
   end
 end
