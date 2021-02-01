@@ -1,24 +1,58 @@
-# README
+## アプリ説明
+このアプリは、フィルムカメラで撮影した際の絞り値(F値)、シャッタースピード、位置情報を記録するWebアプリです。フィルムごとで撮影記録を保存できるので、現像後に撮影の振り返りを行えます。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 使用方法
 
-Things you may want to cover:
+最初にリポジトリをクローンしてください。
+次にRubyGemsをインストールします。
 
-* Ruby version
+```
+$ bundle install --without production
+```
 
-* System dependencies
+その後、データベースへのマイグレーションを行います。
 
-* Configuration
+```
+$ rails db:migrate
+```
 
-* Database creation
+テストを実行してエラーがないことを確認してください。
 
-* Database initialization
+```
+$ rails test
+```
 
-* How to run the test suite
+テストをすべてパスできたら、Railsサーバーを立ち上げます。
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+$ rails server
+```
 
-* Deployment instructions
+本番運用は[*Filcord*](https://filcord.com/)で行っています。
 
-* ...
+***
+
+## 開発理由
+私はフィルムカメラ撮影が趣味ですが、現像後にどんな条件で撮影したのかわからないことが悩みでした。
+記録できるアプリがあればよいなと思い、勉強も兼ねて開発を行いました。
+
+## 工夫点・苦労点
+工夫した点として、テストを細かく書き、機能追加やリファクタリングの際に新たなバグを発生させないようにした点です。苦労した点として、HerokuのタイムゾーンをJSTに変更することがなかなかできなかった点です。公式のリファレンスや様々なブログを見て解決でき、問題発生時の調査方法を学ぶことができました。
+
+## 使用言語・API・フレームワーク・サービス等
+1. フロントエンド 
+    * HTML
+    * CSS
+    * JavaScript
+    * Google Maps JavaScript API
+2. サーバーサイド
+    * Ruby on Rails
+3. データベース
+    * PostgreSQL
+4. インフラ関連
+    * Heroku
+    * Cloudflare
+
+## 学習教材
+* [*progate*](https://prog-8.com/)
+* [*Ruby on Rails チュートリアル*](https://railstutorial.jp/)
