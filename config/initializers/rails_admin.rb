@@ -39,6 +39,12 @@ RailsAdmin.config do |config|
     # history_show
   end
 
+  config.authenticate_with do
+    authenticate_or_request_with_http_basic('Site Message') do |username, password|
+      username == "#{ENV['Basic_ID']}" && password == "#{ENV['Basic_pass']}"
+    end
+  end
+
   ActiveRecord::Base.descendants.each do |imodel|
     config.model "#{imodel.name}" do
       list do
