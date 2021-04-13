@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 2020_12_10_152536) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "films", force: :cascade do |t|
     t.string "name"
     t.string "company"
     t.string "iso"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["user_id", "created_at"], name: "index_films_on_user_id_and_created_at"
     t.index ["user_id"], name: "index_films_on_user_id"
   end
@@ -26,7 +29,7 @@ ActiveRecord::Schema.define(version: 2020_12_10_152536) do
   create_table "photos", force: :cascade do |t|
     t.string "f_number"
     t.string "shutter_speed"
-    t.integer "film_id"
+    t.bigint "film_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "lat"
