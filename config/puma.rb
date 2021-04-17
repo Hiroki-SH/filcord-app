@@ -39,4 +39,4 @@ plugin :tmp_restart
 
 bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
 
-daemonize true
+# daemonize true
