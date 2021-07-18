@@ -31,7 +31,7 @@ end
 users = User.order(:created_at).take(6)
 50.times do
   name = Faker::Lorem.sentence(word_count: 2)
-  company = Faker::Lorem.sentence(word_count: 2)
+  company = Faker::Company.name
   iso = "100"
   users.each { |user| user.films.create!(
     name: name, company: company, iso: iso

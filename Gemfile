@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
+ruby '2.6.3'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-gem 'rails',      '6.0.3.4'
+gem 'rails',      '6.0.3.6'
 gem 'aws-sdk-s3', '1.46.0', require: false
 gem 'active_storage_validations', '0.8.2'
 gem 'image_processing',           '1.9.3'
@@ -19,9 +20,10 @@ gem 'will_paginate',           '3.1.8'
 gem 'bootstrap-will_paginate', '1.0.0'
 gem 'rails-i18n'
 gem 'rails_admin', '~> 2.0' #管理画面のgem
+gem 'pg', '1.2.3'
 
 group :development, :test do
-  gem 'sqlite3', '1.4.2'
+  # gem 'sqlite3', '1.4.2'
   gem 'byebug',  '11.1.3', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
 end
@@ -45,7 +47,7 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '1.2.3'
+  # gem 'pg', '1.2.3'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
