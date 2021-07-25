@@ -1,0 +1,20 @@
+version: 2.1
+
+orbs:
+  ruby: circleci/ruby@1.1.4 #bundleをinstallするため
+  node: circleci/node@4.5.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/ruby:2.6.5-node
+    steps:
+      - checkout
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-path: "yarn.lock"
+
+# workflows:
+#   version: 2
+#   build:
