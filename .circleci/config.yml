@@ -14,43 +14,43 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
           cache-path: "yarn.lock"
-  # test:
-  #   docker:
-  #     - image: cimg/ruby:2.6.6-node
-  #     - image: circleci/postgres:12.6-alpine
-  #       environment:
-  #         POSTGRES_USER: postgres
-  #         POSTGRES_DB: circle_test
-  #         POSTGRES_PASSWORD: ""
-  #   environment:
-  #     BUNDLE_JOBS: "3"
-  #     BUNDLE_RETRY: "3"
-  #     PGHOST: 127.0.0.1
-  #     PGUSER: circle_test
-  #     PGPASSWORD: ""
-  #     RAILS_ENV: test
-  #   steps:
-  #     - checkout
-  #     - ruby/install-deps
-  #     - node/install-packages:
-  #         pkg-manager: yarn
-  #         cache-key: "yarn.lock"
-  #     - run:
-  #         name: Wait for DB
-  #         command: dockerize -wait tcp://localhost:5432 -timeout 1m
-  #     - run:
-  #         name: Database setup
-  #         command: bundle exec rails db:schema:load --trace
-  #     -run:
-  #         name: Test app
-  #         command: bundle exec rails test
+  test:
+    docker:
+      - image: cimg/ruby:2.6.6-node
+      - image: circleci/postgres:12.6-alpine
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: circle_test
+          POSTGRES_PASSWORD: ""
+    environment:
+      BUNDLE_JOBS: "3"
+      BUNDLE_RETRY: "3"
+      PGHOST: 127.0.0.1
+      PGUSER: circle_test
+      PGPASSWORD: ""
+      RAILS_ENV: test
+    steps:
+      - checkout
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
+      -run:
+          name: Test app
+          command: bundle exec rails test
 
 
-# workflows:
-#   version: 2
-#   build_and_test:
-      # jobs:
-      #   - build
-      #   - test:
-      #       requires:
-      #         - build
+workflows:
+  version: 2
+  build_and_test:
+      jobs:
+        - build
+        - test:
+            requires:
+              - build
