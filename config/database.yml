@@ -11,7 +11,7 @@ default: &default
   timeout: 5000
   username: postgres
   password: password
-  host: <%= ENV.fetch("POSTGRES_HOST", 'db') %>
+  host: db
 
 development:
   <<: *default
@@ -26,6 +26,7 @@ test:
   # database: db/test.sqlite3
   username: <%= ENV.fetch("PGUSER") %>
   password: <%= ENV.fetch("PGPASSWORD") %>
+  host: localhost
   database: circle_test
 
 production:

@@ -21,13 +21,13 @@ jobs:
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: circle_test
-          POSTGRES_PASSWORD: ""
+          POSTGRES_PASSWORD: "password"
     environment:
       BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
       PGHOST: 127.0.0.1
-      PGUSER: circle_test
-      PGPASSWORD: ""
+      PGUSER: postgres
+      PGPASSWORD: "password"
       RAILS_ENV: test
     steps:
       - checkout
