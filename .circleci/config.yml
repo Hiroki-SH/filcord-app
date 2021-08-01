@@ -39,6 +39,9 @@ jobs:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
       - run:
+          name: Masterkey setup
+          command: echo $RAILS_MASTER_KEY > ~/project/config/master.key
+      - run:
           name: Database setup
           command: bundle exec rails db:schema:load --trace
       - run:
