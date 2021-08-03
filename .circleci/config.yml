@@ -45,6 +45,9 @@ jobs:
           name: Database setup
           command: bundle exec rails db:schema:load --trace
       - run:
+          name: Webpack build
+          command: bundle exec bin/webpack
+      - run:
           name: Test app
           command: bundle exec rails test
 
