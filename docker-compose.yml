@@ -4,8 +4,13 @@ services:
     image: postgres
     environment: 
       - POSTGRES_PASSWORD=password
+      
   web:
     build: .
+    environment: 
+      - PGUSER=postgres
+      - PGPASSWORD=password
+      - PGHOST=db
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     volumes: 
       - .:/myapp
