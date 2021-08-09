@@ -46,10 +46,10 @@ jobs:
           command: bundle exec rails db:schema:load --trace
       - run:
           name: Webpack build
-          command: bundle exec bin/webpack
+          command: bundle exec rails webpacker:compile #bin/webpack
       - run:
           name: Test app
-          command: sleep 1m;bundle exec rails test
+          command: bundle exec rails test
 
 
 workflows:
