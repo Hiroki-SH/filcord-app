@@ -49,7 +49,7 @@ jobs:
           command: bundle exec bin/webpack
       - run:
           name: Test app
-          command: bundle exec rails test
+          command: sleep 1m;bundle exec rails test
 
 
 workflows:
