@@ -25,7 +25,7 @@ jobs:
     environment:
       BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
-      PGHOST: 127.0.0.1
+      PGHOST: localhost
       PGUSER: postgres
       PGPASSWORD: "password"
       RAILS_ENV: test
@@ -46,7 +46,7 @@ jobs:
           command: bundle exec rails db:schema:load --trace
       - run:
           name: Webpack build
-          command: bundle exec bin/webpack
+          command: bundle exec rails webpacker:compile #bin/webpack
       - run:
           name: Test app
           command: bundle exec rails test

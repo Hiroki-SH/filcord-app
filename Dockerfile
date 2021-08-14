@@ -1,4 +1,4 @@
-FROM ruby:2.6.3
+FROM ruby:2.6.6
 
 RUN apt-get update && apt-get install -y nodejs --no-install-recommends && rm -rf /var/lib/apt/list/*
 RUN apt-get install -y postgresql-client --no-install-recommends && rm -rf /var/lib/apt/list/*

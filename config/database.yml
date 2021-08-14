@@ -26,7 +26,7 @@ test:
   # database: db/test.sqlite3
   username: <%= ENV.fetch("PGUSER") %>
   password: <%= ENV.fetch("PGPASSWORD") %>
-  host: localhost
+  host: <%= ENV.fetch("PGHOST") %>
   database: circle_test
 
 production:
