@@ -37,3 +37,11 @@ set :deploy_to, "/var/www/rails/filcord-app/"
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+
+# rbenvの設定　
+set :rbenv_type, :user 
+#サーバ上では、rbenvはホームディレクトリにインストールされているため。
+# https://github.com/capistrano/rbenv/blob/master/lib/capistrano/tasks/rbenv.rake を参照
+set :rbenv_ruby, File.read('.ruby-version').strip
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
