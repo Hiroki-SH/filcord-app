@@ -45,3 +45,7 @@ set :rbenv_type, :user
 set :rbenv_ruby, File.read('.ruby-version').strip
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+
+# bundlerの設定
+set :linked_dirs, fetch(:linked_dirs, []) << '.bundle'
+set :bundle_jobs, 1 #デフォルトでは4になっている。ec2インスタンスのCPUコア数に合わる。
