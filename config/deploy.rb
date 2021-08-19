@@ -39,7 +39,7 @@ set :deploy_to, "/var/www/rails/filcord-app/"
 # set :ssh_options, verify_host_key: :secure
 
 # rbenvの設定　
-set :rbenv_type, :user 
+set :rbenv_type, :user
 #サーバ上では、rbenvはホームディレクトリにインストールされているため。
 # https://github.com/capistrano/rbenv/blob/master/lib/capistrano/tasks/rbenv.rake を参照
 set :rbenv_ruby, File.read('.ruby-version').strip
@@ -47,5 +47,16 @@ set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rben
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 
 # bundlerの設定
-set :linked_dirs, fetch(:linked_dirs, []) << '.bundle'
+append :linked_dirs, '.bundle'
 set :bundle_jobs, 1 #デフォルトでは4になっている。ec2インスタンスのCPUコア数に合わる。
+
+#Railsの設定
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets'
+append :linked_files, 'config/master.key'
+
+#yarnのパスを設定。
+#https://stackoverflow.com/questions/61129932/why-does-capistrano-deployment-fail-at-assetsprecompile-without-error/61210930#61210930
+set :default_env, {
+  PATH: '$HOME/.nodenv/shims/:$PATH',
+  NODE_ENVIRONMENT: 'production'
+}
