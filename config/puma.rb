@@ -37,6 +37,7 @@ preload_app!
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
 
-bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
+#bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
+bind 'unix:///var/www/rails/filcord-app/shared/tmp/sockets/puma.sock'
 
 # daemonize true
