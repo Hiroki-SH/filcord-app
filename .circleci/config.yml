@@ -52,7 +52,7 @@ jobs:
           command: bundle exec rails test
       - add_ssh_keys:
           fingerprints:
-            - "	bb:1c:dc:cb:55:d3:c1:d4:d6:63:a3:15:bf:46:18:7e"
+            - "bb:1c:dc:cb:55:d3:c1:d4:d6:63:a3:15:bf:46:18:7e"
 
 
 workflows:
