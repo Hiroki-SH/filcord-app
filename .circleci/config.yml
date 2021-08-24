@@ -46,20 +46,35 @@ jobs:
           command: bundle exec rails db:schema:load --trace
       - run:
           name: Webpack build
-          command: bundle exec rails webpacker:compile #bin/webpack
+          command: bundle exec rails webpacker:compile
       - run:
-          name: Test app
+          name: App test
           command: bundle exec rails test
+  deploy:
+    docker:
+      - image: cimg/ruby:2.6.6-node
+    steps:
+      - checkout
+      - ruby/install-deps
+      - run:
+          name: Masterkey setup
+          command: echo $RAILS_MASTER_KEY > ~/project/config/master.key
       - add_ssh_keys:
           fingerprints:
             - "bb:1c:dc:cb:55:d3:c1:d4:d6:63:a3:15:bf:46:18:7e"
+      - run:
+          name: App deploy
+          command: bundle exec cap production deploy
 
 
 workflows:
   version: 2
-  build_and_test:
+  build_test_deploy:
     jobs:
       - build
       - test:
           requires:
             - build
+      - deploy:
+          requires:
+            - test
