@@ -61,7 +61,7 @@ jobs:
           command: echo $RAILS_MASTER_KEY > ~/project/config/master.key
       - add_ssh_keys:
           fingerprints:
-            - "bb:1c:dc:cb:55:d3:c1:d4:d6:63:a3:15:bf:46:18:7e"
+            - "24:15:e9:da:51:27:16:28:97:ca:66:aa:f4:c1:7a:f0"
       - run:
           name: App deploy
           command: bundle exec cap production deploy
