@@ -8,32 +8,6 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 server "54.65.39.10", user: "hiroki", roles: %w{app db web}
 
-
-
-# role-based syntax
-# ==================
-
-# Defines a role with one or multiple servers. The primary server in each
-# group is considered to be the first unless any hosts have the primary
-# property set. Specify the username and a domain or IP for the server.
-# Don't use `:all`, it's a meta role.
-
-# role :app, %w{deploy@example.com}, my_property: :my_value
-# role :web, %w{user1@primary.com user2@additional.com}, other_property: :other_value
-# role :db,  %w{deploy@example.com}
-
-
-
-# Configuration
-# =============
-# You can set any configuration variable like in config/deploy.rb
-# These variables are then only loaded and set in this stage.
-# For available Capistrano configuration variables see the documentation page.
-# http://capistranorb.com/documentation/getting-started/configuration/
-# Feel free to add new variables to customise your setup.
-
-
-
 # Custom SSH Options
 # ==================
 # You may pass any option but keep in mind that net/ssh understands a
@@ -48,6 +22,12 @@ server "54.65.39.10", user: "hiroki", roles: %w{app db web}
 #    auth_methods: %w(password)
 #  }
 #
+set :ssh_options, {
+  keys: [ENV.fetch("PRODUCTION_SSH_KEY").to_s],
+  forward_agent: false, #git~サーバとローカルマシン~サーバで使用する鍵を同じにしたい時trueにする
+  auth_methods: %w(publickey) #認証方式
+}
+
 # The server-based syntax can be used to override options:
 # ------------------------------------
 # server "example.com",
