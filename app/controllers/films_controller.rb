@@ -45,6 +45,9 @@ class FilmsController < ApplicationController
     redirect_to user_url
   end
 
+  def film_export
+  end
+
   private
     def film_params
       params.require(:film).permit(:name, :company, :iso)
