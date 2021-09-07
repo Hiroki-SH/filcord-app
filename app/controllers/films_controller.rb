@@ -48,14 +48,16 @@ class FilmsController < ApplicationController
   def film_export
     # @hoge = Photo.where(film_id: params[:film_id])
     photos = Film.find_by(id: params[:film_id]).photos
-    filepath = Rails.root.join('tmp', "#{params[:film_id].to_s}.txt").to_s
+    filepath = Rails.root.join('tmp', "#{params[:film_id].to_s}.csv").to_s
     File.open(filepath, "w") do |file|
-      photos.each do |photo|
-        file.puts(photo.f_number)
+      file.puts("id,シャッタースピード,F値,撮影日")
+      photos.each_with_index do |photo, idx|
+        txt = "#{idx + 1},#{photo.shutter_speed},#{photo.f_number},#{photo.created_at}"
+        file.puts(txt)
       end
     end
 
-    send_data(File.read(filepath), filename: "#{params[:film_id].to_s}.txt")
+    send_data(File.read(filepath), filename: "#{params[:film_id].to_s}.csv")
 
     File.delete(filepath)
   end
