@@ -1,6 +1,6 @@
 class FilmsController < ApplicationController
   before_action :logged_in_user
-  before_action -> { correct_user_film(params[:id]) }, only: [:show, :edit, :update, :destroy]
+  before_action -> { correct_user_film(params[:id]) }, only: [:show, :edit, :update, :destroy, :film_export]
 
   def show
     @photos = @film.photos.paginate(page: params[:page])
@@ -47,8 +47,8 @@ class FilmsController < ApplicationController
 
   def film_export
     # @hoge = Photo.where(film_id: params[:film_id])
-    photos = Film.find_by(id: params[:film_id]).photos
-    filepath = Rails.root.join('tmp', "#{params[:film_id].to_s}.csv").to_s
+    photos = Film.find_by(id: params[:id]).photos
+    filepath = Rails.root.join('tmp', "#{params[:id].to_s}.csv").to_s
     File.open(filepath, "w") do |file|
       file.puts("id,シャッタースピード,F値,撮影日")
       photos.each_with_index do |photo, idx|
@@ -57,7 +57,7 @@ class FilmsController < ApplicationController
       end
     end
 
-    send_data(File.read(filepath), filename: "#{params[:film_id].to_s}.csv")
+    send_data(File.read(filepath), filename: "#{params[:id].to_s}.csv")
 
     File.delete(filepath)
   end

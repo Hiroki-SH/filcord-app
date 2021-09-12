@@ -13,7 +13,7 @@
       </div>
     </div>
     <%= link_to "撮影記録を追加", new_photo_path(film_id: @film.id), class: "btn" %>
-    <%= link_to "ファイル出力", film_export_path(film_id: @film.id), method: :post, class: "btn" %>
+    <%= link_to "ファイル出力", film_export_path(id: @film.id), method: :post, class: "btn" %>
   </div>
     
   <div class="index-wrapper">
