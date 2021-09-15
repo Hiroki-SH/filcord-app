@@ -113,4 +113,21 @@ class FilmsControllerTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
     assert_redirected_to login_url
   end
+
+  test "未ログイン状態で撮影データをダウンロードできないか" do
+    post film_export_path, params: {
+      id: @film.id
+    }
+    assert_not flash.empty?
+    assert_redirected_to login_url
+  end
+
+  test "他人の撮影データをダウンロードできないか" do
+    log_in_as(@user)
+    post film_export_path, params: {
+      id: @other_user_film.id
+    }
+    assert_not flash.empty?
+    assert_redirected_to login_url
+  end
 end
