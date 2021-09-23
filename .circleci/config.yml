@@ -10,7 +10,8 @@ jobs:
       - image: cimg/ruby:2.6.6-node
     steps:
       - checkout
-      - ruby/install-deps
+      - ruby/install-deps:
+          key: v2-gem-cache
       - node/install-packages:
           pkg-manager: yarn
           cache-path: "yarn.lock"
@@ -31,7 +32,8 @@ jobs:
       RAILS_ENV: test
     steps:
       - checkout
-      - ruby/install-deps
+      - ruby/install-deps:
+          key: v2-gem-cache
       - node/install-packages:
           pkg-manager: yarn
           cache-path: "yarn.lock"
@@ -55,7 +57,8 @@ jobs:
       - image: cimg/ruby:2.6.6-node
     steps:
       - checkout
-      - ruby/install-deps
+      - ruby/install-deps:
+          key: v2-gem-cache
       - run:
           name: Masterkey setup
           command: echo $RAILS_MASTER_KEY > ~/project/config/master.key
