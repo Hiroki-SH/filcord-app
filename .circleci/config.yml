@@ -11,7 +11,7 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps:
-          key: v1-gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          key: v2-gem-cache
       - node/install-packages:
           pkg-manager: yarn
           cache-path: "yarn.lock"
@@ -33,7 +33,7 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps:
-          key: v1-gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          key: v2-gem-cache
       - node/install-packages:
           pkg-manager: yarn
           cache-path: "yarn.lock"
@@ -58,7 +58,7 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps:
-          key: v1-gem-cache-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          key: v2-gem-cache
       - run:
           name: Masterkey setup
           command: echo $RAILS_MASTER_KEY > ~/project/config/master.key
