@@ -59,7 +59,7 @@ class FilmsController < ApplicationController
 
     send_data(File.read(filepath), filename: "#{params[:id].to_s}.csv")
 
-    File.delete(filepath)
+    File.delete(filepath) if File.file?(filepath)
   end
 
   private

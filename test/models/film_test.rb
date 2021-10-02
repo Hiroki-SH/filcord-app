@@ -20,8 +20,13 @@ class FilmTest < ActiveSupport::TestCase
     assert_not @film.valid?
   end
 
-  test "空白のisomに対するバリデーションが機能するかテスト" do
+  test "空白のisoに対するバリデーションが機能するかテスト" do
     @film.iso = "      "
+    assert_not @film.valid?
+  end
+
+  test "数字以外のisoに対してバリデーションが機能するかテスト" do
+    @film.iso = "a"
     assert_not @film.valid?
   end
 
