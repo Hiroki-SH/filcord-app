@@ -16,7 +16,9 @@ export function showGoogleMapPoint(lat, lng){
 
       infowindow.setContent(results[0].formatted_address);
       infowindow.open(map, marker);
-      window.alert("hogehoge!");
+    }
+    else {
+      alert('Geocode was not successful for the following reason: ' + status);
     }
   });
   // new google.maps.Marker({
