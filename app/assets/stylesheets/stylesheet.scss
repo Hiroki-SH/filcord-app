@@ -88,8 +88,25 @@ header {
   }
 }
 
+.big-bg {
+  background-image: image-url("top_background.jpg");
+  background-position: center top;
+  background-size: cover;
+  min-height: 100vh;
+  background-color  : #80796c;
+  background-blend-mode : soft-light;
+  overflow: hidden; //https://meshikui.com/2020/03/26/2620/ 子要素にmarginがあると親要素を突き抜ける
+}
+
 .top-wrapper {
   text-align: center;
+  margin-top: 15%;
+  margin-bottom: 5%;
+
+  h1 {
+    font-family: 'Courgette', cursive;
+    font-size: 50px;
+  }
 }
 
 .btn-wrapper {
