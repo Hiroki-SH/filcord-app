@@ -23,7 +23,7 @@ body {
 header {
   height: 65px;
   width: 100%;
-  background-color: rgba(34, 49, 52, 0.9);
+  background-color: rgba(130, 170, 170, 0.9);
   position :fixed;
   top: 0;
   z-index: 10;
@@ -93,7 +93,7 @@ header {
   background-position: center top;
   background-size: cover;
   min-height: 100vh;
-  background-color  : #80796c;
+  background-color  : #745c31;
   background-blend-mode : soft-light;
   overflow: hidden; //https://meshikui.com/2020/03/26/2620/ 子要素にmarginがあると親要素を突き抜ける
 }
@@ -102,6 +102,7 @@ header {
   text-align: center;
   margin-top: 15%;
   margin-bottom: 5%;
+  color: #ddd;
 
   h1 {
     font-family: 'Courgette', cursive;
