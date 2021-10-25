@@ -52,7 +52,7 @@ class FilmsController < ApplicationController
     File.open(filepath, "w") do |file|
       file.puts("id,シャッタースピード,F値,撮影日")
       photos.each_with_index do |photo, idx|
-        txt = "#{idx + 1},#{photo.shutter_speed},#{photo.f_number},#{photo.created_at}"
+        txt = "#{idx + 1},#{photo.shutter_speed},#{photo.f_number},#{photo.created_at.strftime("%Y/%m/%d %H:%M")}"
         file.puts(txt)
       end
     end
