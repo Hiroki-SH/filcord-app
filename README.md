@@ -13,7 +13,7 @@
 工夫した点として、テストを細かく書き、機能追加やリファクタリングの際に新たなバグを発生させないようにした点です。苦労した点として、HerokuのタイムゾーンをJSTに変更することがなかなかできなかった点です。公式のリファレンスや様々なブログを見て解決でき、問題発生時の調査方法を学ぶことができました。 -->
 
 ## インフラアーキテクチャ
-![AWS Integration ap-northeast-1](https://user-images.githubusercontent.com/68184826/139089905-8d9e4cf3-5931-4fac-b032-0033805669df.png)
+![AWS_Integration](https://user-images.githubusercontent.com/68184826/139581620-1ea25bb7-4a53-4d4d-b607-66bbb545a084.png)
 
 ## 使用言語・API・フレームワーク・サービス等
 1. フロントエンド 
