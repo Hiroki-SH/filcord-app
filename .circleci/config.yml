@@ -15,6 +15,7 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
           cache-path: "yarn.lock"
+          cache-version: "v2"
   test:
     docker:
       - image: cimg/ruby:2.6.6-node
@@ -37,6 +38,7 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
           cache-path: "yarn.lock"
+          cache-version: "v2"
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
