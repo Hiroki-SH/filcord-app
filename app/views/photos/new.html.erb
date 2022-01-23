@@ -33,3 +33,4 @@
 
 <script src=<%= "https://maps.google.com/maps/api/js?key=#{Rails.application.credentials.map_api_key}&language=ja" %>></script>
 <%= javascript_pack_tag 'location' %>
+<%= react_component("Helloworld", { greeting: "Hello from react-rails." }) %>
