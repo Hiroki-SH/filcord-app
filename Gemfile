@@ -21,6 +21,7 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'rails-i18n'
 gem 'rails_admin', '~> 2.0' #管理画面のgem
 gem 'pg', '1.2.3'
+gem 'react-rails'
 
 group :development, :test do
   # gem 'sqlite3', '1.4.2'

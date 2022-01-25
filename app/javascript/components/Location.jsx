@@ -1,19 +1,19 @@
-import {showGoogleMapPoint} from "./google_map.js"
+import React from "react"
+import  ReactDOM  from "react-dom"
+import {showGoogleMapPoint} from "../packs/google_map"
 
-function successFunc(position) {
-  var data = position.coords; //取得した位置情報を整理
-  var lat = data.latitude; //緯度
-  var lng = data.longitude; //経度
-
-  // console.log(Object.prototype.toString.call(lat));
+const successFunc = (position) =>  {
+  const data = position.coords; //取得した位置情報を整理
+  const lat = data.latitude; //緯度
+  const lng = data.longitude; //経度
 
   document.getElementById("photo_lat").value = lat;
   document.getElementById("photo_lng").value = lng;
 
   showGoogleMapPoint(lat, lng);
-}
+};
 
-function errorFunc(error){
+const errorFunc = (error) => {
   var errorMessage = {
     0: "原因不明のエラーが発生しました",
     1: "位置情報の取得が許可されませんでした",
@@ -22,16 +22,15 @@ function errorFunc(error){
   };
 
   alert(errorMessage[error.code]);
-}
+};
 
-var optionObj = {
+const optionObj = {
   "enableHighAccuracy": false ,
 	"timeout": 8000 ,
 	"maximumAge": 5000 ,
 };
 
-document.getElementById("map-button").onclick = function(){ //htmlのid"text_button"が押された時
-// 使用端末が位置情報に対応している場合
+const onClickButton = () => {
   if (navigator.geolocation)
   {
     navigator.geolocation.getCurrentPosition(successFunc, errorFunc, optionObj);
@@ -43,3 +42,11 @@ document.getElementById("map-button").onclick = function(){ //htmlのid"text_but
   }
 };
 
+export const Location = () => {
+  return (
+  <button onClick={onClickButton}>位置情報を取得</button>
+  );
+};
+
+ReactDOM.render(<Location />, document.getElementById("map-b"));
+export default Location
