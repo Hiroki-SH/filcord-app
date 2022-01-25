@@ -1,34 +1,19 @@
 import React from "react"
 import  ReactDOM  from "react-dom"
-import PropTypes from "prop-types"
 import {showGoogleMapPoint} from "../packs/google_map"
 
-// class Location extends React.Component {
-//   render () {
-//     return (
-//       <>
-//         Greeting: {this.props.greeting}
-//         lat: {this.props.lat}
-//         lng: {this.props.lng}
-//       </>
-//     );
-//   }
-// }
-
-function successFunc(position) {
-  var data = position.coords; //取得した位置情報を整理
-  var lat = data.latitude; //緯度
-  var lng = data.longitude; //経度
-
-  // console.log(Object.prototype.toString.call(lat));
+const successFunc = (position) =>  {
+  const data = position.coords; //取得した位置情報を整理
+  const lat = data.latitude; //緯度
+  const lng = data.longitude; //経度
 
   document.getElementById("photo_lat").value = lat;
   document.getElementById("photo_lng").value = lng;
 
   showGoogleMapPoint(lat, lng);
-}
+};
 
-function errorFunc(error){
+const errorFunc = (error) => {
   var errorMessage = {
     0: "原因不明のエラーが発生しました",
     1: "位置情報の取得が許可されませんでした",
@@ -37,9 +22,9 @@ function errorFunc(error){
   };
 
   alert(errorMessage[error.code]);
-}
+};
 
-var optionObj = {
+const optionObj = {
   "enableHighAccuracy": false ,
 	"timeout": 8000 ,
 	"maximumAge": 5000 ,
@@ -63,11 +48,5 @@ export const Location = () => {
   );
 };
 
-ReactDOM.render(<Location />, document.getElementById("map-button"));
-
-// Location.propTypes = {
-//   greeting: PropTypes.string,
-//   lat: PropTypes.string,
-//   lng: PropTypes.string
-// };
+ReactDOM.render(<Location />, document.getElementById("map-b"));
 export default Location
