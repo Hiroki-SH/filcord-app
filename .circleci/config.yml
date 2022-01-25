@@ -15,6 +15,7 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
           cache-path: "yarn.lock"
+          cache-version: "v2"
   test:
     docker:
       - image: cimg/ruby:2.6.6-node
@@ -37,6 +38,7 @@ jobs:
       - node/install-packages:
           pkg-manager: yarn
           cache-path: "yarn.lock"
+          cache-version: "v2" #yarn.lockファイルが変更されたら、これを変更する
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
@@ -67,7 +69,7 @@ jobs:
             - "24:15:e9:da:51:27:16:28:97:ca:66:aa:f4:c1:7a:f0"
       - run:
           name: App deploy
-          command: bundle exec cap production deploy
+          command: bundle exec cap production deploy 
 
 
 workflows:
