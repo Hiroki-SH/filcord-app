@@ -20,6 +20,7 @@
     * HTML
     * CSS
     * JavaScript
+    * React
     * Google Maps JavaScript API
 2. サーバーサイド
     * Ruby on Rails
